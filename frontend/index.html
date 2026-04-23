@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MobiCompare — India's Best Phone Price Comparison</title>
+<meta name="description" content="Compare mobile phone prices across Vijay Sales, Croma, Reliance Digital, JioMart and more. Find the best deals on latest smartphones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+--bg:#0a0a0f;--bg2:#12121a;--bg3:#1a1a26;--card:#1e1e2e;--card2:#252538;
+--accent:#ff5c35;--accent2:#ff8c35;--blue:#3b82f6;--green:#22c55e;--purple:#a855f7;
+--text:#f0f0f5;--text2:#a0a0b8;--text3:#606075;--border:#2a2a40;--border2:#3a3a58;
+--font:'Outfit',sans-serif;--mono:'Space Mono',monospace;
+--shadow:0 4px 24px rgba(0,0,0,.5);--shadow2:0 8px 48px rgba(0,0,0,.7);
+}
+[data-theme="light"]{
+--bg:#f5f5f0;--bg2:#ebebе5;--bg3:#e0e0da;--card:#ffffff;--card2:#f8f8f2;
+--accent:#e63c1a;--accent2:#e06b1a;--blue:#2563eb;--green:#16a34a;--purple:#9333ea;
+--text:#1a1a2e;--text2:#44445a;--text3:#888898;--border:#d0d0c8;--border2:#b8b8b0;
+--shadow:0 4px 24px rgba(0,0,0,.1);--shadow2:0 8px 48px rgba(0,0,0,.15);
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+button{font-family:var(--font);cursor:pointer;border:none;outline:none}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 2rem}
+[data-theme="light"] nav{background:rgba(245,245,240,.92)}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:1.5rem;height:60px}
+.logo{font-size:1.4rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-0.5px;white-space:nowrap;cursor:pointer}
+.nav-links{display:flex;gap:1.5rem;margin-left:1rem}
+.nav-links a{font-size:.85rem;font-weight:500;color:var(--text2);transition:color .2s;cursor:pointer}
+.nav-links a:hover{color:var(--text)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:.75rem}
+.theme-btn{width:38px;height:38px;border-radius:50%;background:var(--card);border:1px solid var(--border);color:var(--text2);font-size:1rem;display:flex;align-items:center;justify-content:center;transition:all .2s;position:relative}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+.nav-btn{padding:.45rem 1.1rem;border-radius:8px;font-size:.8rem;font-weight:600;background:var(--accent);color:#fff;transition:all .2s}
+.nav-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* HERO */
+.hero{padding:5rem 2rem 4rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(255,92,53,.12) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--border);border-radius:100px;padding:.35rem .9rem;font-size:.75rem;font-weight:600;color:var(--text2);margin-bottom:1.5rem;letter-spacing:.5px}
+.hero-badge span{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);font-weight:800;line-height:1.15;letter-spacing:-1px;max-width:800px;margin:0 auto 1rem}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:1.05rem;color:var(--text2);max-width:560px;margin:0 auto 2.5rem;line-height:1.7}
+.search-wrap{position:relative;max-width:640px;margin:0 auto 1rem}
+.search-input{width:100%;padding:1rem 1.25rem 1rem 3.5rem;border-radius:14px;background:var(--card);border:1.5px solid var(--border);color:var(--text);font-size:1rem;font-family:var(--font);transition:all .2s}
+.search-input::placeholder{color:var(--text3)}
+.search-input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,92,53,.12)}
+.search-icon{position:absolute;left:1.1rem;top:50%;transform:translateY(-50%);color:var(--text3);font-size:1.1rem}
+.search-btn{position:absolute;right:.5rem;top:50%;transform:translateY(-50%);padding:.55rem 1.25rem;border-radius:10px;background:var(--accent);color:#fff;font-weight:600;font-size:.85rem;transition:all .2s}
+.search-btn:hover{opacity:.9}
+.suggestions{position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-top:.5rem;overflow:hidden;z-index:50;display:none;box-shadow:var(--shadow2)}
+.suggestions.open{display:block}
+.sug-item{padding:.75rem 1.25rem;cursor:pointer;font-size:.9rem;display:flex;align-items:center;gap:.75rem;color:var(--text2);transition:background .15s}
+.sug-item:hover{background:var(--bg2);color:var(--text)}
+.price-bar{max-width:640px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.5rem;display:flex;align-items:center;gap:1rem}
+.price-bar label{font-size:.8rem;font-weight:600;color:var(--text2);white-space:nowrap}
+.price-range{flex:1;-webkit-appearance:none;appearance:none;height:4px;background:var(--border2);border-radius:2px;outline:none}
+.price-range::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);cursor:pointer}
+.price-val{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--accent);white-space:nowrap}
+.hero-stats{display:flex;gap:2rem;justify-content:center;margin-top:2.5rem;flex-wrap:wrap}
+.hero-stat{text-align:center}
+.hero-stat strong{display:block;font-size:1.6rem;font-weight:800;color:var(--text)}
+.hero-stat span{font-size:.78rem;color:var(--text3);font-weight:500}
+
+/* TRENDING MARQUEE */
+.trending-marquee{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:.55rem 0}
+.marquee-inner{display:flex;gap:3rem;animation:marquee 40s linear infinite;white-space:nowrap}
+.marquee-inner:hover{animation-play-state:paused}
+.m-item{font-size:.78rem;color:var(--text2);display:flex;align-items:center;gap:.5rem;font-weight:500}
+.m-item .m-up{color:var(--green);font-size:.65rem;font-weight:700}
+.m-item .m-down{color:var(--accent);font-size:.65rem;font-weight:700}
+
+/* SECTIONS */
+.section{max-width:1400px;margin:0 auto;padding:3rem 2rem}
+.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.75rem}
+.section-head h2{font-size:1.35rem;font-weight:700;display:flex;align-items:center;gap:.6rem}
+.see-all{font-size:.8rem;font-weight:600;color:var(--accent);border:1px solid var(--border);border-radius:8px;padding:.4rem .9rem;transition:all .2s;cursor:pointer}
+.see-all:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* PHONE CARDS */
+.phones-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.25rem}
+.phone-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all .3s;cursor:pointer;position:relative}
+.phone-card:hover{transform:translateY(-5px);box-shadow:0 16px 48px rgba(0,0,0,.6);border-color:var(--border2)}
+.card-img{background:var(--bg2);display:flex;align-items:center;justify-content:center;height:190px;position:relative;overflow:hidden}
+.card-img img{height:155px;object-fit:contain;transition:transform .4s cubic-bezier(.34,1.56,.64,1);display:block}
+.phone-card:hover .card-img img{transform:scale(1.1) translateY(-4px)}
+.card-badge{position:absolute;top:.6rem;left:.6rem;padding:.25rem .6rem;border-radius:6px;font-size:.65rem;font-weight:700;letter-spacing:.5px;z-index:2}
+.badge-hot{background:rgba(255,92,53,.2);color:var(--accent);border:1px solid rgba(255,92,53,.4)}
+.badge-new{background:rgba(59,130,246,.2);color:var(--blue);border:1px solid rgba(59,130,246,.4)}
+.badge-budget{background:rgba(34,197,94,.2);color:var(--green);border:1px solid rgba(34,197,94,.4)}
+.card-wish{position:absolute;top:.6rem;right:.6rem;width:30px;height:30px;border-radius:8px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:all .2s;z-index:2}
+.card-wish:hover,.card-wish.active{background:rgba(255,92,53,.15);border-color:var(--accent);color:var(--accent)}
+.card-body{padding:1rem}
+.card-brand{font-size:.7rem;font-weight:700;letter-spacing:1px;color:var(--text3);text-transform:uppercase;margin-bottom:.25rem}
+.card-name{font-size:.95rem;font-weight:600;line-height:1.3;margin-bottom:.5rem;color:var(--text)}
+.card-specs{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.75rem}
+.spec-tag{font-size:.65rem;background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:.2rem .5rem;color:var(--text2)}
+.card-price{display:flex;align-items:baseline;gap:.4rem;margin-bottom:.1rem}
+.price-main{font-size:1.15rem;font-weight:800;color:var(--text)}
+.price-old{font-size:.8rem;color:var(--text3);text-decoration:line-through}
+.price-off{font-size:.7rem;font-weight:700;color:var(--green)}
+.card-sellers{font-size:.7rem;color:var(--text3);margin-bottom:.85rem}
+.card-sellers span{color:var(--text2);font-weight:600}
+.card-btns{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+.btn-compare{background:transparent;border:1px solid var(--border);border-radius:8px;padding:.5rem;font-size:.75rem;font-weight:600;color:var(--text2);transition:all .2s}
+.btn-compare:hover,.btn-compare.selected{background:var(--purple);border-color:var(--purple);color:#fff}
+.btn-view{background:var(--accent);border-radius:8px;padding:.5rem;font-size:.75rem;font-weight:600;color:#fff;transition:all .2s}
+.btn-view:hover{opacity:.9}
+
+/* INSIGHTS */
+.insights{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.75rem}
+.insight{font-size:.68rem;font-weight:600;padding:.25rem .6rem;border-radius:5px}
+.ins-best{background:rgba(34,197,94,.15);color:var(--green)}
+.ins-fast{background:rgba(59,130,246,.15);color:var(--blue)}
+.ins-camera{background:rgba(168,85,247,.15);color:var(--purple)}
+.ins-battery{background:rgba(245,158,11,.15);color:#f59e0b}
+.ins-5g{background:rgba(20,184,166,.15);color:#14b8a6}
+
+/* BRANDS SECTION */
+.brands-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.85rem}
+.brand-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.6rem;cursor:pointer;transition:all .25s;text-align:center}
+.brand-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 32px rgba(255,92,53,.15)}
+.brand-logo{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;overflow:hidden}
+.brand-logo img{width:100%;height:100%;object-fit:contain}
+.brand-name{font-size:.82rem;font-weight:700;color:var(--text)}
+.brand-count{font-size:.68rem;color:var(--text3)}
+
+/* TRENDING PHONES ROW (horizontal scroll) */
+.phones-scroll{display:flex;gap:1rem;overflow-x:auto;padding-bottom:.75rem;-ms-overflow-style:none;scrollbar-width:none}
+.phones-scroll::-webkit-scrollbar{display:none}
+.phones-scroll .phone-card{min-width:210px;flex-shrink:0}
+
+/* CATEGORY PILLS */
+.category-pills{display:flex;gap:.6rem;overflow-x:auto;padding-bottom:.5rem;margin-bottom:1.5rem;-ms-overflow-style:none;scrollbar-width:none}
+.category-pills::-webkit-scrollbar{display:none}
+.cat-pill{padding:.45rem 1.1rem;border-radius:100px;border:1px solid var(--border);font-size:.8rem;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s;color:var(--text2);background:var(--card)}
+.cat-pill:hover,.cat-pill.active{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* FILTERS SIDEBAR */
+.listing-layout{display:grid;grid-template-columns:260px 1fr;gap:1.5rem;align-items:start;max-width:1400px;margin:0 auto;padding:2rem}
+.filters-panel{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.25rem;position:sticky;top:70px}
+.filters-panel h3{font-size:.9rem;font-weight:700;margin-bottom:1.25rem}
+.filter-group{margin-bottom:1.25rem;border-bottom:1px solid var(--border);padding-bottom:1.25rem}
+.filter-group:last-child{border:none;padding:0;margin:0}
+.filter-label{font-size:.75rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.75rem}
+.filter-chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.chip{padding:.3rem .7rem;border-radius:100px;border:1px solid var(--border);font-size:.72rem;font-weight:500;cursor:pointer;transition:all .15s;color:var(--text2)}
+.chip:hover,.chip.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.filter-range-out{display:flex;justify-content:space-between;font-size:.72rem;color:var(--text2);margin-top:.4rem;font-family:var(--mono)}
+
+/* PRODUCT DETAIL */
+.detail-layout{max-width:1200px;margin:0 auto;padding:2rem}
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:3rem}
+.detail-img-wrap{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;display:flex;align-items:center;justify-content:center;min-height:380px;position:relative;overflow:hidden}
+.detail-img{height:280px;object-fit:contain;transition:transform .5s;display:block}
+.detail-img-wrap:hover .detail-img{transform:rotate(-5deg) scale(1.07)}
+.detail-thumbs{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
+.thumb{width:54px;height:54px;border-radius:8px;background:var(--card2);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;overflow:hidden}
+.thumb.active,.thumb:hover{border-color:var(--accent)}
+.thumb img{width:42px;height:42px;object-fit:contain}
+.detail-brand{font-size:.75rem;font-weight:700;letter-spacing:1.5px;color:var(--text3);text-transform:uppercase}
+.detail-name{font-size:1.8rem;font-weight:800;line-height:1.2;margin:.4rem 0 .75rem}
+.detail-rating{display:flex;align-items:center;gap:.5rem;margin-bottom:1.25rem}
+.stars{color:#f59e0b;font-size:.9rem;letter-spacing:1px}
+.rating-count{font-size:.8rem;color:var(--text3)}
+.detail-price-main{font-size:2.2rem;font-weight:800;line-height:1;margin-bottom:.25rem}
+.detail-price-row{display:flex;align-items:center;gap:.75rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.best-deal-tag{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:var(--green);font-size:.7rem;font-weight:700;padding:.2rem .6rem;border-radius:6px;letter-spacing:.5px}
+.seller-table{width:100%;border-collapse:collapse;margin-bottom:1.5rem;border-radius:12px;overflow:hidden}
+.seller-table th{background:var(--bg2);font-size:.7rem;font-weight:700;letter-spacing:.5px;color:var(--text3);text-transform:uppercase;padding:.7rem 1rem;text-align:left}
+.seller-table td{padding:.85rem 1rem;font-size:.85rem;border-top:1px solid var(--border)}
+.seller-table tr:hover td{background:var(--card2)}
+.seller-logo{font-weight:700;font-size:.8rem;color:var(--text)}
+.price-cell{font-weight:700;color:var(--text);font-family:var(--mono)}
+.cheapest .price-cell{color:var(--green)}
+.delivery-ok{color:var(--green);font-size:.8rem}
+.buy-btn{background:var(--accent);color:#fff;border-radius:8px;padding:.4rem .9rem;font-size:.75rem;font-weight:700;transition:all .2s;display:inline-block}
+.buy-btn:hover{opacity:.9;transform:scale(1.02)}
+.best-deal-row .buy-btn{background:var(--green)}
+
+/* SPECS TABLE */
+.specs-section{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:2rem}
+.specs-section h3{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);font-size:1rem;font-weight:700}
+.spec-row{display:grid;grid-template-columns:200px 1fr;border-bottom:1px solid var(--border)}
+.spec-row:last-child{border:none}
+.spec-key{padding:.9rem 1.5rem;font-size:.82rem;color:var(--text2);background:var(--bg2)}
+.spec-val{padding:.9rem 1.5rem;font-size:.82rem;color:var(--text);font-weight:500}
+
+/* COMPARE BAR */
+.compare-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card2);border-top:1px solid var(--border);padding:1rem 2rem;display:flex;align-items:center;gap:1rem;z-index:90;transform:translateY(100%);transition:transform .3s;backdrop-filter:blur(10px)}
+.compare-bar.visible{transform:translateY(0)}
+.compare-slots{display:flex;gap:.75rem;flex:1}
+.compare-slot{background:var(--bg2);border:1px dashed var(--border2);border-radius:10px;padding:.6rem 1rem;font-size:.8rem;color:var(--text3);display:flex;align-items:center;gap:.5rem;min-width:160px}
+.compare-slot.filled{border-style:solid;border-color:var(--accent);color:var(--text)}
+.compare-now-btn{background:var(--accent);color:#fff;border-radius:10px;padding:.7rem 1.5rem;font-weight:700;font-size:.85rem;white-space:nowrap}
+.clear-compare{background:transparent;border:1px solid var(--border);color:var(--text2);border-radius:10px;padding:.7rem 1rem;font-size:.85rem}
+
+/* AI CHATBOT */
+.chat-fab{position:fixed;bottom:5rem;right:1.5rem;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:1.2rem;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 24px rgba(255,92,53,.4);z-index:95;transition:all .3s;cursor:pointer;border:none}
+.chat-fab:hover{transform:scale(1.1)}
+.chat-window{position:fixed;bottom:7rem;right:1.5rem;width:360px;max-height:500px;background:var(--card);border:1px solid var(--border);border-radius:20px;z-index:95;display:flex;flex-direction:column;box-shadow:var(--shadow2);transform:scale(0);transform-origin:bottom right;transition:transform .3s cubic-bezier(.34,1.56,.64,1);overflow:hidden}
+.chat-window.open{transform:scale(1)}
+.chat-head{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.75rem}
+.chat-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--purple));display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff}
+.chat-head-info h4{font-size:.9rem;font-weight:700}
+.chat-head-info p{font-size:.7rem;color:var(--green);font-weight:500}
+.chat-close{margin-left:auto;background:none;border:none;color:var(--text3);font-size:1.2rem;cursor:pointer}
+.chat-msgs{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.75rem;min-height:200px;max-height:320px}
+.msg{max-width:85%;padding:.6rem .9rem;border-radius:12px;font-size:.82rem;line-height:1.5}
+.msg-bot{background:var(--bg2);color:var(--text);align-self:flex-start;border-bottom-left-radius:3px}
+.msg-user{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.chat-input-row{display:flex;padding:.75rem;gap:.5rem;border-top:1px solid var(--border)}
+.chat-input{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.55rem .9rem;font-size:.82rem;color:var(--text);font-family:var(--font)}
+.chat-input:focus{outline:none;border-color:var(--accent)}
+.chat-send{background:var(--accent);color:#fff;border-radius:10px;padding:.55rem .85rem;font-size:.82rem;font-weight:700}
+.chat-suggestions{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 1rem .75rem}
+.chat-sug{background:var(--bg2);border:1px solid var(--border);border-radius:100px;padding:.3rem .7rem;font-size:.72rem;cursor:pointer;color:var(--text2);transition:all .15s}
+.chat-sug:hover{border-color:var(--accent);color:var(--accent)}
+
+/* PAGE TABS */
+.page-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:2rem;gap:0;overflow-x:auto}
+.tab-btn{padding:.9rem 1.5rem;font-size:.9rem;font-weight:600;color:var(--text2);border-bottom:2px solid transparent;cursor:pointer;background:none;border-top:none;border-left:none;border-right:none;white-space:nowrap;transition:all .2s}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-btn:hover{color:var(--text)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+
+/* COMPARE TABLE */
+.compare-table-wrap{overflow-x:auto;margin-top:1.5rem}
+.compare-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.compare-table th{background:var(--card2);padding:1rem;text-align:center;border:1px solid var(--border);font-size:.8rem}
+.compare-table td{padding:.85rem 1rem;border:1px solid var(--border);text-align:center;vertical-align:middle}
+.compare-table .label-col{text-align:left;background:var(--bg2);font-weight:600;color:var(--text2);font-size:.78rem}
+.winner-cell{background:rgba(34,197,94,.08);font-weight:700;color:var(--green)}
+
+/* WISHLIST DOT */
+.wish-count{position:absolute;top:-4px;right:-4px;width:16px;height:16px;border-radius:50%;background:var(--accent);font-size:.6rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center}
+
+/* PAGE VIEWS */
+.page{display:none}
+.page.active{display:block}
+
+/* REVIEWS */
+.review-card{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;margin-bottom:.85rem}
+.review-head{display:flex;align-items:center;gap:.75rem;margin-bottom:.5rem}
+.reviewer-avatar{width:36px;height:36px;border-radius:50%;background:var(--purple);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700}
+.reviewer-name{font-size:.85rem;font-weight:600}
+.review-date{font-size:.72rem;color:var(--text3)}
+.review-stars{color:#f59e0b;font-size:.75rem}
+.review-text{font-size:.82rem;color:var(--text2);line-height:1.6}
+
+/* ALERT MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2rem;width:380px;transform:translateY(20px) scale(.97);transition:transform .3s;position:relative}
+.modal-overlay.open .modal{transform:none}
+.modal h3{font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.3rem;color:var(--text3);cursor:pointer}
+.modal input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;font-size:.9rem;color:var(--text);font-family:var(--font);margin-top:.75rem}
+.modal input:focus{outline:none;border-color:var(--accent)}
+.modal-btn{width:100%;background:var(--accent);color:#fff;border-radius:10px;padding:.85rem;font-weight:700;font-size:.95rem;margin-top:1rem}
+
+/* TOAST */
+.toast{position:fixed;top:1.5rem;right:1.5rem;background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:.9rem 1.25rem;font-size:.85rem;font-weight:500;z-index:300;transform:translateX(120%);transition:transform .35s;display:flex;align-items:center;gap:.6rem;box-shadow:var(--shadow2)}
+.toast.show{transform:translateX(0)}
+.toast-icon{font-size:1rem}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 2rem 1.5rem;margin-top:4rem}
+.footer-inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:2.5rem}
+.footer-brand .logo-footer{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;margin-bottom:.75rem}
+.footer-brand p{font-size:.82rem;color:var(--text2);line-height:1.7;max-width:260px}
+.footer-col h4{font-size:.8rem;font-weight:700;letter-spacing:.5px;color:var(--text3);text-transform:uppercase;margin-bottom:.85rem}
+.footer-col a{display:block;font-size:.83rem;color:var(--text2);margin-bottom:.5rem;transition:color .2s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.25rem;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--text3)}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:900px){
+  .detail-grid{grid-template-columns:1fr}
+  .listing-layout{grid-template-columns:1fr}
+  .filters-panel{display:none}
+  .footer-inner{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .hero h1{font-size:1.8rem}
+  .phones-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-stats{gap:1rem}
+  .chat-window{width:300px}
+  .compare-bar .compare-slots{display:none}
+  .footer-inner{grid-template-columns:1fr}
+  .brands-grid{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')" style="display:flex;align-items:center;gap:.55rem;cursor:pointer">
+  <img src="https://cdn-icons-png.flaticon.com/512/0/191.png" alt="MobiCompare" style="width:28px;height:28px;object-fit:contain;filter:drop-shadow(0 0 6px rgba(255,92,53,.5))">
+  <span>MobiCompare</span>
+</div>
+    <div class="nav-links">
+      <a onclick="showPage('home')">Home</a>
+      <a onclick="showPage('listing')">All Phones</a>
+      <a onclick="showPage('compare-page')">Compare</a>
+      <a onclick="scrollToBrands()">Trending</a>
+      <a onclick="scrollToBrands()">Brands</a>
+    </div>
+    <div class="nav-right">
+      <div style="position:relative">
+        <button class="theme-btn" onclick="showPage('wishlist-page')" title="Wishlist">❤️
+          <span class="wish-count" id="wish-count">0</span>
+        </button>
+      </div>
+      <button class="theme-btn" onclick="toggleTheme()" id="theme-icon" title="Toggle theme">🌙</button>
+
+    </div>
+  </div>
+</nav>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toast-icon">✓</span>
+  <span id="toast-msg"></span>
+</div>
+
+<!-- ============ HOME PAGE ============ -->
+<div class="page active" id="home">
+
+<!-- TRENDING MARQUEE -->
+<div class="trending-marquee" id="trending-ticker">
+  <div class="marquee-inner" id="marquee-inner"></div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge"><span></span> Live price updates across 12 stores</div>
+  <h1>Compare Phones.<br><em>Buy Smarter.</em></h1>
+  <p>Real-time price comparison across Vijay Sales, Croma, Reliance Digital, JioMart, Tata Cliq, and more — all in one place.</p>
+
+  <div class="search-wrap">
+    <span class="search-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+    <input type="text" class="search-input" id="hero-search" placeholder="Search Samsung, iPhone, OnePlus, Pixel..." oninput="handleSearch(this)" onfocus="openSuggestions()" onblur="setTimeout(closeSuggestions,200)">
+    <button class="search-btn" onclick="doSearch()">Search</button>
+    <div class="suggestions" id="suggestions"></div>
+  </div>
+
+  <div class="price-bar">
+    <label>Price Range</label>
+    <input type="range" class="price-range" min="5000" max="200000" value="50000" step="1000" id="hero-price" oninput="updateHeroPrice(this)">
+    <span class="price-val" id="hero-price-val">Up to ₹50,000</span>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat"><strong>4,800+</strong><span>Phones Listed</span></div>
+    <div class="hero-stat"><strong>12</strong><span>Stores Compared</span></div>
+    <div class="hero-stat"><strong>₹14,200</strong><span>Avg. Savings Found</span></div>
+    <div class="hero-stat"><strong>4.8★</strong><span>User Rating</span></div>
+  </div>
+</section>
+
+<!-- TRENDING PHONES -->
+<section class="section" id="trending-section">
+  <div class="section-head">
+    <h2><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(255,92,53,.15);border-radius:8px;margin-right:4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ff5c35" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 6-6 8-6 14a6 6 0 0 0 12 0c0-6-6-8-6-14z"/><path d="M12 12c0 3-2 5-2 7a2 2 0 0 0 4 0c0-2-2-4-2-7z"/></svg></span> Trending Now</h2>
+    <button class="see-all" onclick="showPage('listing')">See All →</button>
+  </div>
+  <div class="category-pills" id="trending-pills">
+    <span class="cat-pill active" onclick="filterTrending('all',this)">All</span>
+    <span class="cat-pill" onclick="filterTrending('flagship',this)">Flagship</span>
+    <span class="cat-pill" onclick="filterTrending('mid',this)">Mid-Range</span>
+    <span class="cat-pill" onclick="filterTrending('budget',this)">Budget</span>
+    <span class="cat-pill" onclick="filterTrending('5g',this)">5G Only</span>
+  </div>
+  <div class="phones-grid" id="trending-grid"></div>
+</section>
+
+<!-- LATEST LAUNCHES -->
+<section class="section" style="background:var(--bg2);border-radius:20px">
+  <div class="section-head">
+    <h2><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(99,102,241,.15);border-radius:8px;margin-right:4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span> Latest Launches</h2>
+    <button class="see-all" onclick="showPage('listing')">See All →</button>
+  </div>
+  <div class="phones-grid" id="latest-grid"></div>
+</section>
+
+<!-- BUDGET PICKS -->
+<section class="section">
+  <div class="section-head">
+    <h2><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(34,197,94,.15);border-radius:8px;margin-right:4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg></span> Best Budget Phones</h2>
+    <button class="see-all" onclick="showPage('listing')">See All →</button>
+  </div>
+  <div class="phones-grid" id="budget-grid"></div>
+</section>
+
+<!-- BRANDS -->
+<section class="section" id="brands">
+  <div class="section-head">
+    <h2><span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:rgba(251,191,36,.15);border-radius:8px;margin-right:4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span> Shop by Brand</h2>
+    <span style="font-size:.78rem;color:var(--text3)" id="brand-total-count"></span>
+  </div>
+  <div class="brands-grid" id="brands-row"></div>
+</section>
+
+</div><!-- /home -->
+
+<!-- ============ LISTING PAGE ============ -->
+<div class="page" id="listing">
+  <div class="listing-layout">
+    <aside class="filters-panel">
+      <h3>Filters</h3>
+      <div class="filter-group">
+        <div class="filter-label">Price Range</div>
+        <div>
+          <input type="range" class="price-range" style="width:100%" min="5000" max="200000" value="200000" step="1000" id="filter-price" oninput="filterPhones()">
+          <div class="filter-range-out">
+            <span>₹5,000</span>
+            <span id="filter-price-val">Up to ₹2,00,000</span>
+          </div>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">Brand</div>
+        <div class="filter-chips" id="brand-chips"></div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">RAM</div>
+        <div class="filter-chips">
+          <span class="chip" onclick="toggleChip(this,'ram','4')">4 GB</span>
+          <span class="chip" onclick="toggleChip(this,'ram','6')">6 GB</span>
+          <span class="chip" onclick="toggleChip(this,'ram','8')">8 GB</span>
+          <span class="chip" onclick="toggleChip(this,'ram','12')">12 GB</span>
+          <span class="chip" onclick="toggleChip(this,'ram','16')">16 GB</span>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">Storage</div>
+        <div class="filter-chips">
+          <span class="chip" onclick="toggleChip(this,'storage','128')">128 GB</span>
+          <span class="chip" onclick="toggleChip(this,'storage','256')">256 GB</span>
+          <span class="chip" onclick="toggleChip(this,'storage','512')">512 GB</span>
+          <span class="chip" onclick="toggleChip(this,'storage','1 TB')">1 TB</span>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">Connectivity</div>
+        <div class="filter-chips">
+          <span class="chip" onclick="toggleChip(this,'5g','true')">5G</span>
+          <span class="chip" onclick="toggleChip(this,'5g','false')">4G</span>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-label">Rating</div>
+        <div class="filter-chips">
+          <span class="chip" onclick="toggleChip(this,'rating','4')">4★ & up</span>
+          <span class="chip" onclick="toggleChip(this,'rating','4.5')">4.5★ & up</span>
+        </div>
+      </div>
+      <button style="width:100%;background:transparent;border:1px solid var(--border);border-radius:10px;padding:.65rem;color:var(--text2);font-size:.82rem;font-weight:600;margin-top:.5rem" onclick="clearFilters()">Clear All Filters</button>
+    </aside>
+
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem">
+        <div>
+          <h2 style="font-size:1.15rem;font-weight:700">All Smartphones</h2>
+          <p style="font-size:.8rem;color:var(--text2);margin-top:.2rem" id="listing-count">Showing all phones</p>
+        </div>
+        <select onchange="sortPhones(this.value)" style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.5rem 1rem;color:var(--text);font-size:.85rem;font-family:var(--font)">
+          <option value="popular">Most Popular</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Highest Rated</option>
+          <option value="newest">Newest First</option>
+        </select>
+      </div>
+      <div class="phones-grid" id="listing-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DETAIL PAGE ============ -->
+<div class="page" id="detail-page">
+  <div class="detail-layout">
+    <div id="detail-content"></div>
+  </div>
+</div>
+
+<!-- ============ COMPARE PAGE ============ -->
+<div class="page" id="compare-page">
+  <div style="max-width:1300px;margin:0 auto;padding:2rem">
+    <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:.5rem">Phone Comparison</h2>
+    <p style="color:var(--text2);font-size:.85rem;margin-bottom:2rem">Compare up to 3 phones side by side.</p>
+    <div id="compare-full-content"></div>
+  </div>
+</div>
+
+<!-- ============ WISHLIST PAGE ============ -->
+<div class="page" id="wishlist-page">
+  <div style="max-width:1200px;margin:0 auto;padding:2rem">
+    <h2 style="font-size:1.4rem;font-weight:700;margin-bottom:.5rem">My Wishlist</h2>
+    <p style="color:var(--text2);font-size:.85rem;margin-bottom:2rem">Track prices on your saved phones.</p>
+    <div class="phones-grid" id="wishlist-grid"></div>
+    <p style="text-align:center;color:var(--text3);padding:3rem;display:none" id="wishlist-empty">No phones in wishlist yet. Heart any phone to add it!</p>
+  </div>
+</div>
+
+<!-- ============ BRAND PAGE ============ -->
+<div class="page" id="brand-page">
+  <div style="max-width:1400px;margin:0 auto;padding:2rem">
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap">
+      <button onclick="showPage('home')" style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:.5rem 1rem;font-size:.85rem;color:var(--text2)">← Back</button>
+      <div id="brand-page-header"></div>
+    </div>
+    <div class="phones-grid" id="brand-phones-grid"></div>
+  </div>
+</div>
+
+<!-- COMPARE BAR -->
+<div class="compare-bar" id="compare-bar">
+  <div class="compare-slots" id="compare-slots"></div>
+  <button class="clear-compare" onclick="clearCompare()">Clear</button>
+  <button class="compare-now-btn" onclick="goCompare()">Compare Now →</button>
+</div>
+
+<!-- AI CHATBOT -->
+<button class="chat-fab" onclick="toggleChat()" title="MobiBot"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M12 2a3 3 0 0 1 3 3v6H9V5a3 3 0 0 1 3-3z"/><circle cx="9" cy="15" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/></svg></button>
+<div class="chat-window" id="chat-window">
+  <div class="chat-head">
+    <div class="chat-avatar">AI</div>
+    <div class="chat-head-info"><h4>MobiBot</h4><p>● Online</p></div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-msgs" id="chat-msgs">
+    <div class="msg msg-bot">Hi! I'm MobiBot. Ask me about phones — best under a budget, camera comparisons, 5G options, and more!</div>
+  </div>
+  <div class="chat-suggestions" id="chat-sugs">
+    <span class="chat-sug" onclick="quickChat(this)">Best phone under ₹20k</span>
+    <span class="chat-sug" onclick="quickChat(this)">Best camera phone 2025</span>
+    <span class="chat-sug" onclick="quickChat(this)">5G phones under ₹30k</span>
+    <span class="chat-sug" onclick="quickChat(this)">Compare S25 vs iPhone 16</span>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" class="chat-input" id="chat-input" placeholder="Ask about any phone..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button class="chat-send" onclick="sendChat()">↑</button>
+  </div>
+</div>
+
+<!-- PRICE ALERT MODAL -->
+<div class="modal-overlay" id="alert-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3 style="margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> Set Price Alert</h3>
+    <p style="font-size:.82rem;color:var(--text2);margin-top:.5rem" id="alert-phone-name"></p>
+    <p style="font-size:.82rem;color:var(--text2);margin-top:.5rem">Current best price: <strong id="alert-current-price" style="color:var(--accent)"></strong></p>
+    <input type="email" placeholder="Your email address" id="alert-email">
+    <input type="number" placeholder="Alert me when price drops to ₹" id="alert-target" style="margin-top:.5rem">
+    <button class="modal-btn" onclick="setAlert()">Set Alert</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-footer" style="display:flex;align-items:center;gap:.4rem">
+  <img src="https://cdn-icons-png.flaticon.com/512/0/191.png" alt="MobiCompare" style="width:20px;height:20px;object-fit:contain;opacity:.85">
+  MobiCompare
+</span>
+      <p>India's most accurate mobile price comparison platform. We compare prices across 12+ stores to find you the best deals.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a onclick="showPage('listing')">All Phones</a>
+      <a onclick="showPage('compare-page')">Compare</a>
+      <a onclick="filterCategory('camera')">Best Camera</a>
+      <a onclick="filterCategory('5g')">5G Phones</a>
+      <a onclick="filterCategory('budget')">Budget Picks</a>
+    </div>
+    <div class="footer-col">
+      <h4>Top Brands</h4>
+      <a onclick="showBrandPage('Samsung')">Samsung</a>
+      <a onclick="showBrandPage('Apple')">Apple</a>
+      <a onclick="showBrandPage('OnePlus')">OnePlus</a>
+      <a onclick="showBrandPage('Xiaomi')">Xiaomi</a>
+      <a onclick="showBrandPage('Google')">Google Pixel</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MobiCompare. For informational purposes only.</span>
+    <span>Not affiliated with any seller.</span>
+  </div>
+</footer>
+
+<script>
+// ===================== PHONE DATABASE =====================
+const PHONES = [
+  // ── SAMSUNG ──
+  {id:1,name:"Galaxy S25 Ultra",brand:"Samsung",badge:"hot",
+   img:"https://avatars.mds.yandex.net/get-mpic/5279470/2a00000194b608444f690437f4f21efcbeba/orig",
+
+   specs:{ram:"12 GB",storage:"256 GB",battery:"5000 mAh",camera:"200 MP",processor:"Snapdragon 8 Elite",display:'6.9" QHD+',os:"Android 15",fiveG:true},
+   rating:4.8,reviews:2847,basePrice:133999,oldPrice:149999,
+   sellers:[{name:"Samsung",price:119999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.samsung.com/in/aisearch/?searchvalue=Galaxy%20S25%20Ultra"},{name:"Croma",price:119999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/samsung-galaxy-s25-ultra-5g-12gb-ram-256gb-titanium-gray-/p/313337"},{name:"Vijay Sales",price:119999,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/p/P237318/237311/samsung-galaxy-s25-ultra-5g-12gb-ram-256gb-storage-titanium-silverblue"},{name:"Flipkart",price:106,delivery:"Free 2-3d",returns:"7-day",url:"https://www.flipkart.com/samsung-galaxy-s25-ultra-5g-titanium-silverblue-256-gb/p/itm413a5c3f30151?pid=MOBH8K8U5FWQWD6G&lid=LSTMOBH8K8U5FWQWD6GCSYKJN&marketplace=FLIPKART&q=s25+ultra+mobile&store=tyy%2F4io&srno=s_1_1&otracker=AS_QueryStore_OrganicAutoSuggest_1_3_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_3_na_na_ps&fm=Search&iid=43459448-1a20-43ed-92cc-c4f8927a1b07.MOBH8K8U5FWQWD6G.SEARCH&ppt=sp&ppn=sp&ssid=4ukyfg2ils0000001776842009754&qH=dae4eded0f2ea306&ov_redirect=true"},{name:"Reliance Digital",price:139999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.reliancedigital.in/product/samsung-galaxy-s25-ultra-5g-512-gb-12-gb-ram-titanium-blue-mobile-phone-m69dyk-8850639?internal_source=search_results"}],
+   insights:["Best Display","5G Ready","Top Camera"],year:2025},
+
+  {id:2,name:"Galaxy S25+",brand:"Samsung",badge:"hot",
+
+   img:"https://media.very.co.uk/i/very/WFI1Q_SQ1_0000017817_ICY_BLUE_SLf",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"4900 mAh",camera:"50 MP",processor:"Snapdragon 8 Elite",display:'6.7" AMOLED',os:"Android 15",fiveG:true},
+   rating:4.7,reviews:1420,basePrice:99999,oldPrice:119999,
+   sellers:[{name:"flipkart",price:79999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.flipkart.com/samsung-galaxy-s25-plus-5g-silver-shadow-256-gb/p/itm8d76a9b476932?pid=MOBH8K8UJTZZN7WZ&lid=LSTMOBH8K8UJTZZN7WZTHXXFT&marketplace=FLIPKART&q=s25%2B++mobile&store=tyy%2F4io&spotlightTagId=default_BestsellerId_tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=8f42280c-c0be-4963-8a1f-ca0d9844a290.MOBH8K8UJTZZN7WZ.SEARCH&ppt=sp&ppn=sp&ssid=1lbh4jp3hc0000001776842151831&qH=ef10dc6863eb5b29&ov_redirect=true"},{name:"Croma",price:111999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/samsung-galaxy-s25-plus-5g-12gb-ram-512gb-silver-shadow-/p/309113"},{name:"Reliance Digital",price:89999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/product/samsung-galaxy-s25-plus-5g-256-gb-12-gb-ram-silver-shadow-mobile-phone-m69dfn-8850624?internal_source=search_results"},{name:"samsung",price:98999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.samsung.com/in/aisearch/?searchvalue=Galaxy%20S25%2B"},{name:"Cashify",price:64899,delivery:"Free 2-3d",returns:"7-day",url:"https://www.cashify.in/buy-refurbished-mobile-phones/renewed-samsung-galaxy-s25-plus/152319?productId=74615"}],
+   insights:["5G Ready","Fast Charging","Premium Build"],year:2025},
+
+  {id:3,name:"Galaxy A56 5G",brand:"Samsung",badge:"new",
+   img:"https://media.ldlc.com/r1600/ld/products/00/06/23/69/LD0006236939.jpg",
+   specs:{ram:"8 GB",storage:"128 GB",battery:"5000 mAh",camera:"50 MP",processor:"Exynos 1580",display:'6.7" Super AMOLED',os:"Android 15",fiveG:true},
+   rating:4.4,reviews:890,basePrice:35999,oldPrice:42999,
+   sellers:[{name:"Samsung",price:35999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.samsung.com/in/"},{name:"Croma",price:36999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:36499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Reliance Digital",price:37499,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"},{name:"Tata Cliq",price:35499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.tatacliq.com/"}],
+   insights:["5G Ready","IP67 Rating","Great Display"],year:2025},
+
+  {id:4,name:"Galaxy F55 5G",brand:"Samsung",badge:"budget",
+   img:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-f55-1.jpg",
+   specs:{ram:"8 GB",storage:"128 GB",battery:"5000 mAh",camera:"50 MP",processor:"Snapdragon 7 Gen 1",display:'6.7" sAMOLED',os:"Android 14",fiveG:true},
+   rating:4.2,reviews:1200,basePrice:26999,oldPrice:31999,
+   sellers:[{name:"Samsung",price:26999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.samsung.com/in/"},{name:"JioMart",price:25999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Vijay Sales",price:27499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Croma",price:27999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Snapdeal",price:25499,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"}],
+   insights:["5G Ready","Best Battery","Value Pick"],year:2024},
+
+  // ── APPLE ──
+  {id:5,name:"iPhone 16 Pro Max",brand:"Apple",badge:"hot",
+   img:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-max-1.jpg",
+   specs:{ram:"8 GB",storage:"256 GB",battery:"4685 mAh",camera:"48 MP",processor:"A18 Pro",display:'6.9" OLED',os:"iOS 18",fiveG:true},
+   rating:4.9,reviews:6210,basePrice:144900,oldPrice:159900,
+   sellers:[{name:"Apple",price:144900,delivery:"Free 1-2d",returns:"14-day",url:"https://www.apple.com/in/"},{name:"Croma",price:127490,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/apple-iphone-16-pro-max-256gb-natural-titanium-/p/309747"},{name:"flipkart",price:134900,delivery:"Free 2-3d",returns:"7-day",url:"https://www.flipkart.com/apple-iphone-16-pro-max-black-titanium-256-gb/p/itm7e75db4f27bd5?pid=MOBH4DQFNXH8SZ9D&lid=LSTMOBH4DQFNXH8SZ9DUXE3QP&marketplace=FLIPKART&q=16+pro+max&store=tyy%2F4io&srno=s_1_2&otracker=search&otracker1=search&fm=search-autosuggest&iid=9a4c7f4b-bfb2-45b5-88a4-c30fbca5cde8.MOBH4DQFNXH8SZ9D.SEARCH&ppt=sp&ppn=sp&ssid=xdvmgrbv7k0000001776843186727&qH=6ffaf2efd61db34e&ov_redirect=true"},{name:"cashify",price:104799,delivery:"Free 2-3d",returns:"7-day",url:"https://www.cashify.in/buy-refurbished-mobile-phones/renewed-apple-iphone-16-pro-max/150211?productId=72093"},{name:"Vijay Sales",price:94490,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/p/235141/store-display-unit-apple-iphone-16-pro-max-256-gb-storage-black-titanium"}],
+   insights:["Best Performance","Premium Build","5G Ready"],year:2024},
+
+  {id:6,name:"iPhone 16 Pro",brand:"Apple",badge:"hot",
+   img:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-16-pro-1.jpg",
+   specs:{ram:"8 GB",storage:"128 GB",battery:"3274 mAh",camera:"48 MP",processor:"A18 Pro",display:'6.3" OLED',os:"iOS 18",fiveG:true},
+   rating:4.9,reviews:5120,basePrice:119900,oldPrice:134900,
+   sellers:[{name:"Apple",price:119900,delivery:"Free 1-2d",returns:"14-day",url:"https://www.apple.com/in/"},{name:"Croma",price:103990,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/apple-iphone-16-pro-128gb-desert-titanium-/p/309727"},{name:"flipkart",price:199000,delivery:"Free 2-3d",returns:"7-day",url:"https://www.flipkart.com/apple-iphone-16-pro-black-titanium-256-gb/p/itm9ce88307f4033?pid=MOBH4DQFEJYHHM7X&lid=LSTMOBH4DQFEJYHHM7XVVTGZH&marketplace=FLIPKART&q=16+pro+&store=tyy%2F4io&srno=s_1_1&otracker=search&otracker1=search&fm=Search&iid=1d5798a2-826b-459f-8399-06fcdab43370.MOBH4DQFEJYHHM7X.SEARCH&ppt=sp&ppn=sp&ssid=hacptm3nf40000001776844529630&qH=7e704d4c649612d7&ov_redirect=true"},{name:"cashify",price:83199,delivery:"Free 2-3d",returns:"7-day",url:"https://www.cashify.in/buy-refurbished-mobile-phones/renewed-apple-iphone-16-pro/149957?productId=55300"},{name:"Vijay Sales",price:120490,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/p/235141/store-display-unit-apple-iphone-16-pro-max-256-gb-storage-black-titanium"}],
+   insights:["Best Performance","5G Ready","ProRAW Camera"],year:2024},
+
+  {id:7,name:"iPhone 15",brand:"Apple",badge:"budget",
+   img:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-1.jpg",
+   specs:{ram:"6 GB",storage:"128 GB",battery:"3877 mAh",camera:"48 MP",processor:"A16 Bionic",display:'6.1" Super Retina XDR',os:"iOS 18",fiveG:true},
+   rating:4.7,reviews:7832,basePrice:69900,oldPrice:79900,
+   sellers:[{name:"Apple",price:69900,delivery:"Free 1-2d",returns:"14-day",url:"https://www.apple.com/in/"},{name:"Croma",price:59900,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/apple-iphone-15-128gb-pink-/p/300679"},{name:"Vijay Sales",price:58190,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/p/P220946/220947/apple-iphone-15-128-gb-storage-pink"},{name:"Cashify",price:43899,delivery:"Paid 2-4d",returns:"No return",url:"https://www.cashify.in/buy-refurbished-mobile-phones/renewed-apple-iphone-15/136652"},{name:"Flipkart",price:59900,delivery:"Free 2-3d",returns:"7-day",url:"https://www.flipkart.com/apple-iphone-15-pink-128-gb/p/itm7579ed94ca647?pid=MOBGTAGPNMZA5PU5&lid=LSTMOBGTAGPNMZA5PU5AVZNIR&marketplace=FLIPKART&q=iphone+15&store=tyy%2F4io&srno=s_1_5&otracker=search&otracker1=search&fm=organic&iid=1d416ea0-7cfb-4eb0-8605-57dfd8dc02fb.MOBGTAGPNMZA5PU5.SEARCH&ppt=hp&ppn=homepage&ssid=afrjiujc8w0000001776841441787&qH=2f54b45b321e3ae5&ov_redirect=true"}],
+   insights:["5G Ready","USB-C","Dynamic Island"],year:2023},
+
+  // ── ONEPLUS ──
+  {id:8,name:"OnePlus 13",brand:"OnePlus",badge:"hot",
+   img:"https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-13-1.jpg",
+   specs:{ram:"16 GB",storage:"512 GB",battery:"6000 mAh",camera:"50 MP",processor:"Snapdragon 8 Elite",display:'6.82" LTPO AMOLED',os:"Android 15",fiveG:true},
+   rating:4.7,reviews:1842,basePrice:69999,oldPrice:79999,
+   sellers:[{name:"OnePlus",price:69999,delivery:"Free 2-3d",returns:"15-day",url:"https://www.oneplus.in/"},{name:"Croma",price:71999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:70499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Reliance Digital",price:72999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"},{name:"Snapdeal",price:68999,delivery:"Paid 4-6d",returns:"7-day",url:"https://www.snapdeal.com/"}],
+   insights:["Best Battery","5G Ready","Fast Charging"],year:2025},
+
+  {id:9,name:"OnePlus Nord 4",brand:"OnePlus",badge:"new",
+   img:"https://oasis.opstatics.com/content/dam/oasis/page/2024/global/product/avalon/green.png",
+   specs:{ram:"8 GB",storage:"256 GB",battery:"5500 mAh",camera:"50 MP",processor:"Snapdragon 7+ Gen 3",display:'6.74" AMOLED',os:"Android 14",fiveG:true},
+   rating:4.4,reviews:1050,basePrice:29999,oldPrice:34999,
+   sellers:[{name:"OnePlus",price:29999,delivery:"Free 2-3d",returns:"15-day",url:"https://www.oneplus.in/"},{name:"Croma",price:31499,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:30499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"JioMart",price:29499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Snapdeal",price:28999,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"}],
+   insights:["5G Ready","Metal Body","Fast Charge"],year:2024},
+
+  // ── XIAOMI / REDMI / POCO ──
+  {id:10,name:"Xiaomi 15 Pro",brand:"Xiaomi",badge:"new",
+   img:"https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-15-pro-1.jpg",
+   specs:{ram:"16 GB",storage:"512 GB",battery:"6100 mAh",camera:"50 MP",processor:"Snapdragon 8 Elite",display:'6.73" LTPO AMOLED',os:"Android 15",fiveG:true},
+   rating:4.6,reviews:983,basePrice:59999,oldPrice:64999,
+   sellers:[{name:"Xiaomi",price:59999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.mi.com/in/"},{name:"Croma",price:61999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Reliance Digital",price:62499,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"},{name:"Tata Cliq",price:60499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.tatacliq.com/"},{name:"JioMart",price:58999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["5G Ready","Fast Charging","Best Value"],year:2025},
+
+  {id:11,name:"Redmi Note 14 Pro+",brand:"Xiaomi",badge:"budget",
+   img:"https://api.priceinkenya.com/media/139866/conversions/redminote14proplusc-original.webp",
+   specs:{ram:"8 GB",storage:"256 GB",battery:"5500 mAh",camera:"200 MP",processor:"Dimensity 7300 Ultra",display:'6.67" AMOLED',os:"Android 14",fiveG:true},
+   rating:4.3,reviews:2103,basePrice:23999,oldPrice:28999,
+   sellers:[{name:"Xiaomi",price:23999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.mi.com/in/"},{name:"Vijay Sales",price:24499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Croma",price:25499,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"flipkart",price:22999,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.amazon.in/Redmi-Spectre-128GB-Without-Offer/dp/B0F7LWQFJ5/ref=sr_1_2?crid=1NTEI7RNCY8A3&dib=eyJ2IjoiMSJ9.mOy7l02JxLYSYpgGuZthAcUJ1_mGcPrPe5M1U1ThnjzJ-JuSgQNkNFKLyI93CqGxaKRkAU7deI1cfPE5NGUmOO17fIFdfuHQpo2dSJeeRcWq2PUsh4M1wBfM1cPd94ocAq42IM7S30VZKoprLNXuPyPBCOwo0ElfAtPN3tt8QKAxjIMcKHX9oN5UWBf9oVifyDwNMCEYaFumPjTaHSG_AjyOHp_C-gX4XmgRqTGptKA.kkSwO424IyBRhpfBGthXox-BnVfv9ADyRNY368_75bE&dib_tag=se&keywords=redmi+note+14+%2B&qid=1776845322&sprefix=redmi+note+14+%2Caps%2C460&sr=8-2"},{name:"Reliance Digital",price:24999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"}],
+   insights:["200MP Camera","5G Ready","Best Budget"],year:2024},
+
+  {id:12,name:"POCO X7 Pro 5G",brand:"Xiaomi",badge:"budget",
+   img:"https://bestmobilephone.com.au/wp-content/uploads/2025/01/xiaomi-poco-x7-pro-black.jpg",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"6550 mAh",camera:"50 MP",processor:"Dimensity 8400 Ultra",display:'6.67" AMOLED',os:"Android 15",fiveG:true},
+   rating:4.4,reviews:1576,basePrice:27999,oldPrice:32999,
+   sellers:[{name:"Xiaomi",price:27999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.mi.com/in/"},{name:"Vijay Sales",price:28499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Croma",price:29499,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Snapdeal",price:27499,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"},{name:"JioMart",price:27999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["Massive Battery","5G Ready","Gaming Beast"],year:2025},
+
+  // ── REALME ──
+  {id:13,name:"Realme GT 7 Pro",brand:"Realme",badge:"new",
+   img:"https://m.media-amazon.com/images/I/71w1fbZG-jL._SL1500_.jpg",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"6500 mAh",camera:"50 MP",processor:"Snapdragon 8 Elite",display:'6.78" AMOLED',os:"Android 15",fiveG:true},
+   rating:4.5,reviews:1204,basePrice:41999,oldPrice:49999,
+   sellers:[{name:"Realme",price:41999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.realme.com/in/"},{name:"Croma",price:43999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:42499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Snapdeal",price:40999,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"},{name:"JioMart",price:41499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["Best Battery","5G Ready","Great Value"],year:2024},
+
+  {id:14,name:"Realme Narzo 70 Pro",brand:"Realme",badge:"budget",
+   img:"https://tse3.mm.bing.net/th/id/OIP.SriuUOzsTDlhhiTcNLDLWgHaHa?pid=Api&P=0&h=180",
+   specs:{ram:"8 GB",storage:"128 GB",battery:"5000 mAh",camera:"50 MP",processor:"Dimensity 7050",display:'6.67" AMOLED',os:"Android 14",fiveG:true},
+   rating:4.1,reviews:780,basePrice:17999,oldPrice:22999,
+   sellers:[{name:"Realme",price:17999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.realme.com/in/"},{name:"Croma",price:18999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:18499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Snapdeal",price:17499,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"},{name:"JioMart",price:17999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["Budget Pick","5G Ready","Good Camera"],year:2024},
+
+  // ── VIVO ──
+  {id:15,name:"Vivo X200 Pro",brand:"Vivo",badge:"hot",
+   img:"https://fdn2.gsmarena.com/vv/pics/vivo/vivo-x200-pro-1.jpg",
+   specs:{ram:"16 GB",storage:"512 GB",battery:"5800 mAh",camera:"200 MP",processor:"Dimensity 9400",display:'6.78" AMOLED',os:"Android 15",fiveG:true},
+   rating:4.6,reviews:742,basePrice:74999,oldPrice:84999,
+   sellers:[{name:"Vivo",price:74999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.vivo.com/in/"},{name:"Croma",price:76999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Reliance Digital",price:77499,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"},{name:"Tata Cliq",price:73999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.tatacliq.com/"},{name:"Vijay Sales",price:75999,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"}],
+   insights:["Best Camera","5G Ready","Zeiss Optics"],year:2024},
+
+  {id:16,name:"Vivo V40 Pro",brand:"Vivo",badge:"new",
+   img:"https://fdn2.gsmarena.com/vv/pics/vivo/vivo-v40-pro-1.jpg",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"5500 mAh",camera:"50 MP",processor:"Snapdragon 7 Gen 3",display:'6.78" AMOLED',os:"Android 14",fiveG:true},
+   rating:4.3,reviews:620,basePrice:39999,oldPrice:44999,
+   sellers:[{name:"Vivo",price:39999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.vivo.com/in/"},{name:"Croma",price:41499,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:40499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Reliance Digital",price:41999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"},{name:"JioMart",price:39499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["Zeiss Cameras","5G Ready","Fast Charge"],year:2024},
+
+  // ── GOOGLE PIXEL ──
+  {id:17,name:"Pixel 9 Pro XL",brand:"Google",badge:"hot",
+   img:"https://fdn2.gsmarena.com/vv/pics/google/google-pixel-9-pro-xl-1.jpg",
+   specs:{ram:"16 GB",storage:"256 GB",battery:"5100 mAh",camera:"50 MP",processor:"Tensor G4",display:'6.8" LTPO OLED',os:"Android 15",fiveG:true},
+   rating:4.7,reviews:920,basePrice:109999,oldPrice:124999,
+   sellers:[{name:"Google Store",price:109999,delivery:"Free 2-3d",returns:"15-day",url:"https://store.google.com/in/"},{name:"Croma",price:111999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:110999,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Tata Cliq",price:108999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.tatacliq.com/"},{name:"JioMart",price:107999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["Best AI Camera","Pure Android","5G Ready"],year:2024},
+
+  {id:18,name:"Pixel 9",brand:"Google",badge:"new",
+   img:"https://fdn2.gsmarena.com/vv/pics/google/google-pixel-9-1.jpg",
+   specs:{ram:"12 GB",storage:"128 GB",battery:"4700 mAh",camera:"50 MP",processor:"Tensor G4",display:'6.3" OLED',os:"Android 15",fiveG:true},
+   rating:4.6,reviews:710,basePrice:79999,oldPrice:89999,
+   sellers:[{name:"Google Store",price:79999,delivery:"Free 2-3d",returns:"15-day",url:"https://store.google.com/in/"},{name:"Croma",price:81999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:80999,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Tata Cliq",price:78999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.tatacliq.com/"},{name:"JioMart",price:77999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["AI-Powered","Pure Android","5G Ready"],year:2024},
+
+  // ── MOTOROLA ──
+  {id:19,name:"Motorola Edge 50 Ultra",brand:"Motorola",badge:"new",
+   img:"https://brmotorolanew.vtexassets.com/arquivos/ids/171597/frente-traseira-smartphone-motorola-edge-50-ultra-wood-certo.png?v=638797306503830000",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"4500 mAh",camera:"50 MP",processor:"Snapdragon 8s Gen 3",display:'6.7" pOLED',os:"Android 14",fiveG:true},
+   rating:4.4,reviews:652,basePrice:49999,oldPrice:59999,
+   sellers:[{name:"Motorola",price:49999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.motorola.in/"},{name:"Croma",price:51999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:50999,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"JioMart",price:49499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Snapdeal",price:48999,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"}],
+   insights:["Stock Android","5G Ready","Thin Design"],year:2024},
+
+  {id:20,name:"Moto G85 5G",brand:"Motorola",badge:"budget",
+   img:"https://fdn2.gsmarena.com/vv/pics/motorola/motorola-moto-g85-1.jpg",
+   specs:{ram:"8 GB",storage:"128 GB",battery:"5000 mAh",camera:"50 MP",processor:"Snapdragon 6s Gen 3",display:'6.67" pOLED',os:"Android 14",fiveG:true},
+   rating:4.2,reviews:1100,basePrice:17999,oldPrice:21999,
+   sellers:[{name:"Motorola",price:17999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.motorola.in/"},{name:"Croma",price:18999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:18499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"JioMart",price:17499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Snapdeal",price:17199,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"}],
+   insights:["Budget Pick","5G Ready","Stock Android"],year:2024},
+
+  // ── NOTHING ──
+  {id:21,name:"Nothing Phone (3)",brand:"Nothing",badge:"hot",
+   img:"https://www.01net.com/app/uploads/2025/06/Nothing-Phone-3.jpeg",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"5150 mAh",camera:"50 MP",processor:"Snapdragon 8s Gen 3",display:'6.77" AMOLED',os:"Android 15",fiveG:true},
+   rating:4.5,reviews:521,basePrice:39999,oldPrice:44999,
+   sellers:[{name:"Nothing",price:39999,delivery:"Free 3-5d",returns:"7-day",url:"https://in.nothing.tech/"},{name:"Croma",price:41499,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Tata Cliq",price:40499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.tatacliq.com/"},{name:"Vijay Sales",price:40999,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Cashify",price:38999,delivery:"Paid 3-5d",returns:"No return",url:"https://www.cashify.in/"}],
+   insights:["Unique Design","5G Ready","Glyph Interface"],year:2025},
+
+  {id:22,name:"Nothing Phone (2a) Plus",brand:"Nothing",badge:"budget",
+   img:"https://gadgetcentral.co.ke/wp-content/uploads/2025/01/Nothing-Phone-2a-Plus-1-800x800-1.jpg",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"5000 mAh",camera:"50 MP",processor:"Dimensity 7350 Pro",display:'6.7" AMOLED',os:"Android 14",fiveG:true},
+   rating:4.3,reviews:870,basePrice:23999,oldPrice:27999,
+   sellers:[{name:"Nothing",price:23999,delivery:"Free 3-5d",returns:"7-day",url:"https://in.nothing.tech/"},{name:"Croma",price:24999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:24499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"JioMart",price:23499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Snapdeal",price:22999,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"}],
+   insights:["Glyph LED","5G Ready","Unique Design"],year:2024},
+
+  // ── ASUS ──
+  {id:23,name:"ASUS ROG Phone 9 Pro",brand:"ASUS",badge:"hot",
+   img:"https://fdn2.gsmarena.com/vv/pics/asus/asus-rog-phone-9-pro-1.jpg",
+   specs:{ram:"24 GB",storage:"1 TB",battery:"5800 mAh",camera:"50 MP",processor:"Snapdragon 8 Elite",display:'6.78" AMOLED 185Hz',os:"Android 15",fiveG:true},
+   rating:4.7,reviews:430,basePrice:124999,oldPrice:139999,
+   sellers:[{name:"ASUS",price:124999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.asus.com/in/"},{name:"Croma",price:127999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:126499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Tata Cliq",price:123999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.tatacliq.com/"},{name:"Reliance Digital",price:128999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"}],
+   insights:["Gaming Beast","185Hz Display","5G Ready"],year:2024},
+
+  // ── OPPO ──
+  {id:24,name:"OPPO Find X8 Pro",brand:"OPPO",badge:"hot",
+   img:"https://www.oppo.com/content/dam/oppo/common/mkt/v2-2/find-x8-series-en/find-x8/navigation/440-440-white.png",
+   specs:{ram:"16 GB",storage:"512 GB",battery:"5910 mAh",camera:"50 MP",processor:"Dimensity 9400",display:'6.78" LTPO AMOLED',os:"Android 15",fiveG:true},
+   rating:4.6,reviews:560,basePrice:89999,oldPrice:99999,
+   sellers:[{name:"OPPO",price:89999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.oppo.com/in/"},{name:"Croma",price:91999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:90499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Reliance Digital",price:92999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"},{name:"Tata Cliq",price:88999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.tatacliq.com/"}],
+   insights:["Hasselblad Camera","5G Ready","Best Battery"],year:2024},
+
+  {id:25,name:"OPPO Reno 13 Pro",brand:"OPPO",badge:"new",
+   img:"https://cdn.findprix.com/images/products/oppo-reno-13-pro-5g_10.webp",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"5600 mAh",camera:"50 MP",processor:"Dimensity 8350",display:'6.83" AMOLED',os:"Android 15",fiveG:true},
+   rating:4.3,reviews:410,basePrice:39999,oldPrice:45999,
+   sellers:[{name:"OPPO",price:39999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.oppo.com/in/"},{name:"Croma",price:41499,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:40499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"JioMart",price:39499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Snapdeal",price:38999,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"}],
+   insights:["5G Ready","AI Camera","Good Battery"],year:2025},
+
+  // ── iQOO ──
+  {id:26,name:"iQOO 13",brand:"iQOO",badge:"hot",
+   img:"https://fdn2.gsmarena.com/vv/pics/vivo/vivo-iqoo-13-1.jpg",
+   specs:{ram:"16 GB",storage:"512 GB",battery:"6000 mAh",camera:"50 MP",processor:"Snapdragon 8 Elite",display:'6.82" LTPO AMOLED',os:"Android 15",fiveG:true},
+   rating:4.7,reviews:880,basePrice:54999,oldPrice:64999,
+   sellers:[{name:"iQOO",price:54999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.iqoo.com/in/"},{name:"Croma",price:56999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:55499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Reliance Digital",price:57999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"},{name:"JioMart",price:54499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["Gaming Beast","144Hz Display","5G Ready"],year:2025},
+
+  {id:27,name:"iQOO Z9s Pro",brand:"iQOO",badge:"budget",
+   img:"https://fdn2.gsmarena.com/vv/pics/vivo/vivo-iqoo-z9s-pro-1.jpg",
+   specs:{ram:"8 GB",storage:"128 GB",battery:"5500 mAh",camera:"50 MP",processor:"Dimensity 9200+",display:'6.77" AMOLED',os:"Android 14",fiveG:true},
+   rating:4.3,reviews:720,basePrice:22999,oldPrice:26999,
+   sellers:[{name:"iQOO",price:22999,delivery:"Free 2-3d",returns:"10-day",url:"https://www.iqoo.com/in/"},{name:"Croma",price:23999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:23499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Snapdeal",price:22499,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"},{name:"JioMart",price:22999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["Flagship Chip","5G Ready","Gaming"],year:2024},
+
+  // ── TECNO ──
+  {id:28,name:"Tecno Phantom V Fold 2",brand:"Tecno",badge:"new",
+   img:"https://fdn2.gsmarena.com/vv/pics/tecno/tecno-phantom-v-fold2-1.jpg",
+   specs:{ram:"16 GB",storage:"512 GB",battery:"5750 mAh",camera:"50 MP",processor:"Dimensity 9300+",display:'7.85" LTPO AMOLED Fold',os:"Android 14",fiveG:true},
+   rating:4.2,reviews:280,basePrice:94999,oldPrice:109999,
+   sellers:[{name:"Tecno",price:94999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.tecno-mobile.com/in/"},{name:"Croma",price:96999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"Vijay Sales",price:95999,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"},{name:"Reliance Digital",price:97999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.reliancedigital.in/"},{name:"JioMart",price:93999,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"}],
+   insights:["Foldable","5G Ready","Unique Design"],year:2024},
+
+  {id:29,name:"Tecno Spark 30 Pro",brand:"Tecno",badge:"budget",
+   img:"https://fdn2.gsmarena.com/vv/pics/tecno/tecno-spark-30-pro-1.jpg",
+   specs:{ram:"8 GB",storage:"256 GB",battery:"5000 mAh",camera:"108 MP",processor:"Helio G100",display:'6.78" AMOLED',os:"Android 14",fiveG:false},
+   rating:4.0,reviews:450,basePrice:13999,oldPrice:16999,
+   sellers:[{name:"Tecno",price:13999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.tecno-mobile.com/in/"},{name:"Croma",price:14999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"JioMart",price:13499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Snapdeal",price:13199,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"},{name:"Vijay Sales",price:14299,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"}],
+   insights:["Budget Pick","108MP Camera","Good Battery"],year:2024},
+
+  // ── INFINIX ──
+  {id:30,name:"Infinix Zero 40 5G",brand:"Infinix",badge:"budget",
+   img:"http://rukmini1.flixcart.com/image/300/300/xif0q/mobile/a/4/h/zero-40-5g-x6861-infinix-original-imah4sgz85wrhj4s.jpeg",
+   specs:{ram:"12 GB",storage:"256 GB",battery:"5000 mAh",camera:"108 MP",processor:"Dimensity 8020",display:'6.78" AMOLED',os:"Android 14",fiveG:true},
+   rating:4.1,reviews:340,basePrice:19999,oldPrice:23999,
+   sellers:[{name:"Infinix",price:19999,delivery:"Free 3-5d",returns:"7-day",url:"https://in.infinixmobility.com/"},{name:"Croma",price:20999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"JioMart",price:19499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Snapdeal",price:19199,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"},{name:"Vijay Sales",price:20499,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"}],
+   insights:["Budget 5G","108MP Camera","AMOLED"],year:2024},
+
+  // ── NOKIA ──
+  {id:31,name:"Nokia G42 5G",brand:"Nokia",badge:"budget",
+   img:"https://fdn2.gsmarena.com/vv/pics/nokia/nokia-g42-5g-1.jpg",
+   specs:{ram:"6 GB",storage:"128 GB",battery:"5000 mAh",camera:"50 MP",processor:"Snapdragon 480+",display:'6.56" HD+',os:"Android 13",fiveG:true},
+   rating:4.0,reviews:520,basePrice:14999,oldPrice:18999,
+   sellers:[{name:"Nokia",price:14999,delivery:"Free 3-5d",returns:"7-day",url:"https://www.nokia.com/phones/en_in/"},{name:"Croma",price:15999,delivery:"Free 1-2d",returns:"10-day",url:"https://www.croma.com/"},{name:"JioMart",price:14499,delivery:"Free 2-3d",returns:"7-day",url:"https://www.jiomart.com/"},{name:"Snapdeal",price:14199,delivery:"Paid 4-6d",returns:"5-day",url:"https://www.snapdeal.com/"},{name:"Vijay Sales",price:15299,delivery:"Free 2-4d",returns:"7-day",url:"https://www.vijaysales.com/"}],
+   insights:["Budget 5G","3-Year Updates","Durable"],year:2023},
+];
+
+// Helper: get real phone image via daisycon API
+function getPhoneImg(phone) {
+  if (phone.img && phone.img.startsWith('http')) return phone.img;
+  const brand = encodeURIComponent(phone.brand.toLowerCase());
+  const model = encodeURIComponent(phone.name.toLowerCase());
+  return `https://images.daisycon.io/mobile-device/?width=400&height=400&mobile_device_brand=${brand}&mobile_device_model=${model}`;
+}
+// Helper: get brand logo via clearbit
+function getBrandLogo(brand) {
+  const domains = {
+    'Samsung':'samsung.com','Apple':'apple.com','OnePlus':'oneplus.com',
+    'Xiaomi':'mi.com','Realme':'realme.com','Vivo':'vivo.com',
+    'Motorola':'motorola.com','Google':'google.com','Nothing':'nothing.tech',
+    'ASUS':'asus.com','OPPO':'oppo.com','iQOO':'iqoo.com',
+    'Tecno':'tecno-mobile.com','Infinix':'infinixmobility.com','Nokia':'nokia.com'
+  };
+  const d = domains[brand];
+  return d ? `https://logo.clearbit.com/${d}` : null;
+}
+
+// Brand metadata
+const BRAND_META = {
+  Samsung:  {color:"#1428A0",bg:"rgba(20,40,160,.12)",logo:"https://tse4.mm.bing.net/th/id/OIP.ebcAjlsxNveblKOlGF4VSwHaEK?pid=Api&P=0&h=180"},
+  Apple:    {color:"#555",bg:"rgba(128,128,128,.12)",logo:"https://tse3.mm.bing.net/th/id/OIP.tDbqiKMFAyLo3IjDzmupJAHaEv?pid=Api&P=0&h=180"},
+  OnePlus:  {color:"#F5010C",bg:"rgba(245,1,12,.12)",logo:"https://1000logos.net/wp-content/uploads/2022/11/OnePlus-Emblem-2048x1152.png"},
+  Xiaomi:   {color:"#FF6900",bg:"rgba(255,105,0,.12)",logo:"https://1.bp.blogspot.com/-70xgo5IbgGM/YIKyVaY7JQI/AAAAAAAAClw/9YRGevMxoOoP86po069scJObpjZPzPv7wCNcBGAsYHQ/s2048/Xiaomi.png"},
+  Realme:   {color:"#FFCA2C",bg:"rgba(255,202,44,.12)",logo:"https://static.vecteezy.com/system/resources/previews/020/190/706/original/realme-logo-realme-icon-free-free-vector.jpg"},
+  Vivo:     {color:"#415FFF",bg:"rgba(65,95,255,.12)",logo:"https://tse4.mm.bing.net/th/id/OIP.r02YiDFZMmo6wq7hDBI7mQHaEK?pid=Api&P=0&h=180"},
+  Nothing:  {color:"#f0f0f0",bg:"rgba(240,240,240,.08)",logo:"https://static1.xdaimages.com/wordpress/wp-content/uploads/2021/02/nothing-brand.jpg"},
+  Motorola: {color:"#5C2882",bg:"rgba(92,40,130,.12)",logo:"http://pluspng.com/img-png/motorola-png-motorola-brand-2172.jpg"},
+  Google:   {color:"#4285F4",bg:"rgba(66,133,244,.12)",logo:"https://static.vecteezy.com/system/resources/previews/021/496/588/non_2x/google-brand-logo-symbol-design-illustration-free-vector.jpg"},
+  ASUS:     {color:"#1A1A2E",bg:"rgba(255,100,0,.12)",logo:"https://logowik.com/content/uploads/images/424_asus.jpg"},
+  OPPO:     {color:"#1D8348",bg:"rgba(29,131,72,.12)",logo:"https://crystalpng.com/wp-content/uploads/2025/05/oppo-logo.png"},
+  iQOO:     {color:"#2C2C9C",bg:"rgba(44,44,156,.12)",logo:"https://seeklogo.com/images/I/iqoo-logo-954BFB0A57-seeklogo.com.png"},
+  Tecno:    {color:"#005BAA",bg:"rgba(0,91,170,.12)",logo:"https://ocdn.eu/pulscms-transforms/1/_ffk9ktTURBXy9mODRmMTJkNC05ZTE2LTQ2YzEtYTlmYS04ZTk5MThjMzVkZWUucG5nkIGhMAA"},
+  Infinix:  {color:"#E30613",bg:"rgba(227,6,19,.12)",logo:"https://tse3.mm.bing.net/th/id/OIP.qgc8-HMEeE7bBMIAwY000AHaEI?pid=Api&P=0&h=180"},
+  Nokia:    {color:"#005AFF",bg:"rgba(0,90,255,.12)",logo:"https://tse4.mm.bing.net/th/id/OIP.91lRYGOwhKtKaNKH6lESUAHaEK?pid=Api&P=0&h=180"},
+};
+
+const INSIGHT_CLASS = {
+  "Best Display":"ins-best","5G Ready":"ins-5g","Top Camera":"ins-camera",
+  "Best Performance":"ins-best","Premium Build":"ins-best","Best Battery":"ins-battery",
+  "Fast Charging":"ins-fast","Best Value":"ins-best","Zeiss Optics":"ins-camera",
+  "Unique Design":"ins-best","Glyph Interface":"ins-fast","Best Budget":"ins-best",
+  "Stock Android":"ins-fast","IP67 Rating":"ins-fast","Gaming Beast":"ins-fast",
+  "Massive Battery":"ins-battery","Dynamic Island":"ins-fast","USB-C":"ins-fast",
+  "200MP Camera":"ins-camera","Great Display":"ins-best","Great Value":"ins-best",
+  "Pure Android":"ins-fast","AI-Powered":"ins-fast","ProRAW Camera":"ins-camera",
+  "Hasselblad Camera":"ins-camera","Metal Body":"ins-best","185Hz Display":"ins-best",
+  "Foldable":"ins-best","108MP Camera":"ins-camera","3-Year Updates":"ins-fast",
+  "Budget Pick":"ins-best","Budget 5G":"ins-5g","Flagship Chip":"ins-best",
+  "AI Camera":"ins-camera","Durable":"ins-fast","Good Battery":"ins-battery",
+  "Glyph LED":"ins-fast","Gaming":"ins-fast","Thin Design":"ins-best",
+  "Fast Charge":"ins-fast","AMOLED":"ins-best","Value Pick":"ins-best",
+  "Good Camera":"ins-camera","144Hz Display":"ins-best","Zeiss Cameras":"ins-camera",
+};
+
+// ===================== STATE =====================
+let wishlist = JSON.parse(localStorage.getItem('mobicompare_wish') || '[]');
+let compareList = [];
+let activeFilters = {brand:[],ram:[],storage:[],'5g':[],rating:[]};
+let currentSort = 'popular';
+let currentPhone = null;
+
+// ===================== UTILS =====================
+const fmt = n => '₹' + n.toLocaleString('en-IN');
+const minPrice = p => Math.min(...p.sellers.map(s=>s.price));
+
+function showToast(msg, icon='✓'){
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  document.getElementById('toast-icon').textContent = icon;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 2800);
+}
+
+function saveWishlist(){
+  localStorage.setItem('mobicompare_wish', JSON.stringify(wishlist));
+  document.getElementById('wish-count').textContent = wishlist.length;
+}
+
+function scrollToBrands(){
+  showPage('home');
+  setTimeout(()=>{
+    const el = document.getElementById('brands');
+    if(el) el.scrollIntoView({behavior:'smooth'});
+  }, 100);
+}
+
+// ===================== PAGES =====================
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(id==='listing') renderListing();
+  if(id==='compare-page') renderComparePage();
+  if(id==='wishlist-page') renderWishlist();
+  window.scrollTo(0,0);
+}
+
+// ===================== PHONE CARD =====================
+function renderCard(phone, badgeOverride){
+  const low = minPrice(phone);
+  const badge = badgeOverride || phone.badge;
+  const isWished = wishlist.includes(phone.id);
+  const isCompared = compareList.includes(phone.id);
+  const savings = phone.oldPrice - low;
+  const offPct = Math.round((savings/phone.oldPrice)*100);
+  const insightsHtml = phone.insights.map(i=>
+    `<span class="insight ${INSIGHT_CLASS[i]||'ins-best'}">${i}</span>`
+  ).join('');
+  return `
+  <div class="phone-card" id="card-${phone.id}">
+    <div class="card-img">
+      <span class="card-badge badge-${badge}">${badge==='hot'?'▲ HOT':badge==='new'?'★ NEW':'₹ BUDGET'}</span>
+      <button class="card-wish ${isWished?'active':''}" onclick="toggleWish(event,${phone.id})" id="wish-${phone.id}">❤️</button>
+      <img src="${phone.img}" alt="${phone.name}" loading="lazy"
+        onerror="this.onerror=null;this.src='https://placehold.co/200x260/1e1e2e/555?text='+encodeURIComponent(this.alt||'Phone')"
+        style="height:200px;object-fit:contain;width:100%;padding:8px">
+    </div>
+    <div class="card-body">
+      <div class="card-brand">${phone.brand}</div>
+      <div class="card-name">${phone.name}</div>
+      <div class="card-specs">
+        <span class="spec-tag">${phone.specs.ram}</span>
+        <span class="spec-tag">${phone.specs.storage}</span>
+        <span class="spec-tag">${phone.specs.camera}</span>
+        <span class="spec-tag">${phone.specs.battery}</span>
+        ${phone.specs.fiveG?'<span class="spec-tag" style="color:var(--blue);border-color:rgba(59,130,246,.3)">5G</span>':''}
+      </div>
+      <div class="card-price">
+        <span class="price-main">${fmt(low)}</span>
+        <span class="price-old">${fmt(phone.oldPrice)}</span>
+        <span class="price-off">${offPct}% OFF</span>
+      </div>
+      <div class="card-sellers">Available at <span>${phone.sellers.length} stores</span></div>
+      <div class="insights" style="margin-bottom:.75rem">${insightsHtml}</div>
+      <div class="card-btns">
+        <button class="btn-compare ${isCompared?'selected':''}" id="cmpbtn-${phone.id}" onclick="toggleCompare(${phone.id})">
+          ${isCompared?'✓ Added':'⊕ Compare'}
+        </button>
+        <button class="btn-view" onclick="showDetail(${phone.id})">View →</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+// ===================== TRENDING TICKER =====================
+function buildTicker(){
+  const tickerPhones = PHONES.slice(0,16);
+  const items = tickerPhones.map(p=>{
+    const trend = Math.random()>.4;
+    return `<span class="m-item">
+      ${p.brand} ${p.name}
+      <span class="${trend?'m-up':'m-down'}">${trend?'▲':'▼'} ${fmt(minPrice(p))}</span>
+    </span>`;
+  }).join('');
+  const inner = document.getElementById('marquee-inner');
+  inner.innerHTML = items + items; // duplicate for seamless loop
+}
+
+// ===================== HOME RENDER =====================
+let trendingFilter = 'all';
+function filterTrending(type, el){
+  trendingFilter = type;
+  document.querySelectorAll('.cat-pill').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active');
+  renderTrending();
+}
+
+function renderTrending(){
+  let phones = [...PHONES];
+  if(trendingFilter==='flagship') phones = phones.filter(p=>minPrice(p)>=60000);
+  else if(trendingFilter==='mid') phones = phones.filter(p=>minPrice(p)>=20000&&minPrice(p)<60000);
+  else if(trendingFilter==='budget') phones = phones.filter(p=>minPrice(p)<20000);
+  else if(trendingFilter==='5g') phones = phones.filter(p=>p.specs.fiveG);
+  else phones = phones.filter(p=>p.badge==='hot'||p.rating>=4.5);
+  phones = phones.slice(0,8);
+  document.getElementById('trending-grid').innerHTML = phones.map(p=>renderCard(p)).join('');
+}
+
+function renderHome(){
+  buildTicker();
+  renderTrending();
+
+  const latest = PHONES.filter(p=>p.badge==='new'||p.year===2025).slice(0,6);
+  const budget = PHONES.filter(p=>minPrice(p)<=20000).sort((a,b)=>minPrice(a)-minPrice(b)).slice(0,6);
+
+  document.getElementById('latest-grid').innerHTML = latest.map(p=>renderCard(p)).join('');
+  document.getElementById('budget-grid').innerHTML = budget.map(p=>renderCard(p)).join('');
+
+  renderBrands();
+  saveWishlist();
+}
+
+function renderBrands(){
+  const brands = [...new Set(PHONES.map(p=>p.brand))];
+  document.getElementById('brand-total-count').textContent = `${brands.length} brands`;
+  document.getElementById('brands-row').innerHTML = brands.map(b=>{
+    const meta = BRAND_META[b]||{color:'#888',bg:'rgba(128,128,128,.1)',logo:null};
+    const count = PHONES.filter(p=>p.brand===b).length;
+    return `<div class="brand-card" onclick="showBrandPage('${b}')">
+      <div class="brand-logo" style="background:${meta.bg}">
+        ${meta.logo
+          ? `<img src="${meta.logo}" alt="${b}" style="width:48px;height:48px;object-fit:contain"
+              onerror="this.style.opacity='0.4'">`
+          : `<svg width=40 height=40 viewBox='0 0 24 24' fill='none' stroke='#606075' stroke-width='1.5'><rect x='5' y='2' width='14' height='20' rx='3'/><line x1='12' y1='18' x2='12.01' y2='18' stroke-width='2.5'/></svg>`}
+      </div>
+      <div class="brand-name">${b}</div>
+      <div class="brand-count">${count} phone${count>1?'s':''}</div>
+    </div>`;
+  }).join('');
+}
+
+// ===================== BRAND PAGE =====================
+function showBrandPage(brand){
+  const phones = PHONES.filter(p=>p.brand===brand);
+  const meta = BRAND_META[brand]||{color:'#ff5c35',bg:'rgba(255,92,53,.1)'};
+  document.getElementById('brand-page-header').innerHTML = `
+    <div style="display:flex;align-items:center;gap:.75rem">
+      ${meta.logo?`<img src="${meta.logo}" style="height:32px;object-fit:contain" onerror="this.remove()">`:''}
+      <div>
+        <h2 style="font-size:1.4rem;font-weight:700">${brand}</h2>
+        <p style="color:var(--text2);font-size:.85rem">${phones.length} phones available</p>
+      </div>
+    </div>`;
+  document.getElementById('brand-phones-grid').innerHTML = phones.map(p=>renderCard(p)).join('');
+  showPage('brand-page');
+}
+
+// ===================== SEARCH =====================
+function handleSearch(input){
+  const q = input.value.toLowerCase().trim();
+  const sugs = document.getElementById('suggestions');
+  if(!q){sugs.classList.remove('open');return;}
+  const matches = PHONES.filter(p=>`${p.brand} ${p.name}`.toLowerCase().includes(q)).slice(0,7);
+  if(!matches.length){sugs.classList.remove('open');return;}
+  sugs.innerHTML = matches.map(m=>`<div class="sug-item" onclick="selectPhone(${m.id})">${m.brand} ${m.name} &nbsp;<span style="color:var(--accent);font-size:.8rem;margin-left:auto">${fmt(minPrice(m))}</span></div>`).join('');
+  sugs.classList.add('open');
+}
+
+function openSuggestions(){if(document.getElementById('hero-search').value)handleSearch(document.getElementById('hero-search'));}
+function closeSuggestions(){document.getElementById('suggestions').classList.remove('open');}
+function selectPhone(id){showDetail(id);closeSuggestions();}
+function doSearch(){
+  const q = document.getElementById('hero-search').value.toLowerCase().trim();
+  if(!q)return;
+  showPage('listing');
+  setTimeout(()=>{
+    activeFilters = {brand:[],ram:[],storage:[],'5g':[],rating:[]};
+    filterPhones();
+    const phones = PHONES.filter(p=>`${p.brand} ${p.name}`.toLowerCase().includes(q));
+    document.getElementById('listing-grid').innerHTML = phones.map(p=>renderCard(p)).join('');
+    document.getElementById('listing-count').textContent = `Showing ${phones.length} results for "${q}"`;
+  }, 100);
+}
+
+function updateHeroPrice(el){
+  document.getElementById('hero-price-val').textContent = `Up to ${fmt(+el.value)}`;
+}
+
+function filterCategory(cat){
+  showPage('listing');
+  setTimeout(()=>{
+    activeFilters = {brand:[],ram:[],storage:[],'5g':[],rating:[]};
+    let phones = [...PHONES];
+    if(cat==='camera') phones = phones.filter(p=>p.insights.some(i=>i.toLowerCase().includes('camera'))).sort((a,b)=>b.rating-a.rating);
+    else if(cat==='5g') phones = phones.filter(p=>p.specs.fiveG);
+    else if(cat==='budget') phones = phones.filter(p=>minPrice(p)<=20000).sort((a,b)=>minPrice(a)-minPrice(b));
+    document.getElementById('listing-grid').innerHTML = phones.map(p=>renderCard(p)).join('');
+    document.getElementById('listing-count').textContent = `Showing ${phones.length} phones`;
+  },100);
+}
+
+// ===================== LISTING =====================
+function filterByBrand(brand){
+  showPage('listing');
+  setTimeout(()=>{
+    activeFilters.brand=[brand];
+    document.querySelectorAll('#brand-chips .chip').forEach(c=>{c.classList.toggle('active',c.textContent===brand);});
+    filterPhones();
+  },100);
+}
+
+function renderListing(){
+  const brands = [...new Set(PHONES.map(p=>p.brand))];
+  document.getElementById('brand-chips').innerHTML = brands.map(b=>
+    `<span class="chip ${activeFilters.brand.includes(b)?'active':''}" onclick="toggleChip(this,'brand','${b}')">${b}</span>`
+  ).join('');
+  filterPhones();
+}
+
+function filterPhones(){
+  let phones = [...PHONES];
+  const maxPrice = +document.getElementById('filter-price').value;
+  document.getElementById('filter-price-val').textContent = `Up to ${fmt(maxPrice)}`;
+  phones = phones.filter(p=>minPrice(p)<=maxPrice);
+  if(activeFilters.brand.length) phones = phones.filter(p=>activeFilters.brand.includes(p.brand));
+  if(activeFilters.ram.length) phones = phones.filter(p=>activeFilters.ram.some(r=>p.specs.ram.includes(r)));
+  if(activeFilters.storage.length) phones = phones.filter(p=>activeFilters.storage.some(s=>p.specs.storage.includes(s)));
+  if(activeFilters['5g'].length) phones = phones.filter(p=>activeFilters['5g'].includes(p.specs.fiveG.toString()));
+  if(activeFilters.rating.length) phones = phones.filter(p=>activeFilters.rating.some(r=>p.rating>=+r));
+  sortPhoneArr(phones, currentSort);
+  document.getElementById('listing-grid').innerHTML = phones.map(p=>renderCard(p)).join('');
+  document.getElementById('listing-count').textContent = `Showing ${phones.length} phones`;
+}
+
+function sortPhones(val){currentSort=val;filterPhones();}
+function sortPhoneArr(arr,by){
+  if(by==='price-low') arr.sort((a,b)=>minPrice(a)-minPrice(b));
+  else if(by==='price-high') arr.sort((a,b)=>minPrice(b)-minPrice(a));
+  else if(by==='rating') arr.sort((a,b)=>b.rating-a.rating);
+  else if(by==='newest') arr.sort((a,b)=>b.year-a.year);
+  else arr.sort((a,b)=>b.reviews-a.reviews);
+}
+
+function toggleChip(el,key,val){
+  el.classList.toggle('active');
+  if(el.classList.contains('active')){if(!activeFilters[key].includes(val))activeFilters[key].push(val);}
+  else{activeFilters[key]=activeFilters[key].filter(v=>v!==val);}
+  filterPhones();
+}
+
+function clearFilters(){
+  activeFilters={brand:[],ram:[],storage:[],'5g':[],rating:[]};
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  document.getElementById('filter-price').value=200000;
+  filterPhones();
+}
+
+// ===================== DETAIL PAGE =====================
+function showDetail(id){
+  const phone = PHONES.find(p=>p.id===id);
+  if(!phone) return;
+  currentPhone = phone;
+  const low = minPrice(phone);
+  const cheapestSeller = phone.sellers.reduce((a,b)=>a.price<b.price?a:b);
+  const offPct = Math.round(((phone.oldPrice-low)/phone.oldPrice)*100);
+  const isWished = wishlist.includes(phone.id);
+  const insightsHtml = phone.insights.map(i=>`<span class="insight ${INSIGHT_CLASS[i]||'ins-best'}">${i}</span>`).join('');
+
+  const sellerRows = phone.sellers.slice().sort((a,b)=>a.price-b.price).map(s=>{
+    const isCheapest = s.price===cheapestSeller.price;
+    return `<tr class="${isCheapest?'cheapest best-deal-row':''}">
+      <td><span class="seller-logo">${s.name}</span>${isCheapest?'<br><span style="font-size:.65rem;color:var(--green);font-weight:700">★ BEST DEAL</span>':''}</td>
+      <td class="price-cell">${fmt(s.price)}</td>
+      <td><span class="delivery-ok">✓</span> ${s.delivery}</td>
+      <td style="font-size:.78rem;color:var(--text2)">${s.returns}</td>
+      <td><a href="${s.url}" target="_blank" rel="noopener" class="buy-btn">Buy Now</a></td>
+    </tr>`;
+  }).join('');
+
+  const specRows = [
+    ['Display',phone.specs.display],['Processor',phone.specs.processor],
+    ['RAM',phone.specs.ram],['Storage',phone.specs.storage],
+    ['Camera',phone.specs.camera],['Battery',phone.specs.battery],
+    ['OS',phone.specs.os],['5G Support',phone.specs.fiveG?'✓ Yes':'✗ No'],
+  ].map(([k,v])=>`<div class="spec-row"><div class="spec-key">${k}</div><div class="spec-val">${v}</div></div>`).join('');
+
+  const reviews = [
+    {name:'Rahul M',avatar:'RM',rating:5,date:'Jan 2025',text:'Absolutely fantastic phone. The camera quality is insane and performance is buttery smooth. Best purchase of 2025!'},
+    {name:'Priya S',avatar:'PS',rating:4,date:'Dec 2024',text:'Great phone overall. Battery life is impressive. Price could be slightly better but the features justify it.'},
+    {name:'Aarav K',avatar:'AK',rating:5,date:'Nov 2024',text:'Comparing across sites on MobiCompare saved me ₹8,000! The best deal was on Tata Cliq. Highly recommend.'},
+  ];
+
+  document.getElementById('detail-content').innerHTML = `
+    <div style="margin-bottom:1rem">
+      <a onclick="showPage('home')" style="font-size:.82rem;color:var(--text3);cursor:pointer">Home</a>
+      <span style="color:var(--text3);margin:0 .4rem">/</span>
+      <a onclick="showPage('listing')" style="font-size:.82rem;color:var(--text3);cursor:pointer">All Phones</a>
+      <span style="color:var(--text3);margin:0 .4rem">/</span>
+      <span style="font-size:.82rem;color:var(--text2)">${phone.brand} ${phone.name}</span>
+    </div>
+    <div class="detail-grid">
+      <div>
+        <div class="detail-img-wrap">
+          <img class="detail-img" src="${phone.img}" alt="${phone.name}"
+            onerror="this.onerror=null;this.src='https://placehold.co/300x400/1e1e2e/888?text='+encodeURIComponent(this.alt||'Phone')">
+        </div>
+        <div class="detail-thumbs">
+          <div class="thumb active"><img src="${phone.img}" onerror="this.parentElement.innerHTML='<svg width=30 height=30 viewBox=0,0,24,24 fill=none stroke=%23606075 stroke-width=1.5><rect x=5 y=2 width=14 height=20 rx=3/><line x1=12 y1=18 x2=12 y2=18 stroke-width=2.5/></svg>'"></div>
+          
+        </div>
+      </div>
+      <div class="detail-info">
+        <div class="detail-brand">${phone.brand}</div>
+        <div class="detail-name">${phone.name}</div>
+        <div class="detail-rating">
+          <span class="stars">${'★'.repeat(Math.floor(phone.rating))}${phone.rating%1>=.5?'★':''}</span>
+          <strong style="font-size:.9rem">${phone.rating}</strong>
+          <span class="rating-count">(${phone.reviews.toLocaleString('en-IN')} reviews)</span>
+        </div>
+        <div class="detail-price-main">${fmt(low)}</div>
+        <div class="detail-price-row">
+          <span style="font-size:.85rem;color:var(--text3);text-decoration:line-through">${fmt(phone.oldPrice)}</span>
+          <span style="font-size:.82rem;font-weight:700;color:var(--green)">${offPct}% off</span>
+          <span class="best-deal-tag">BEST DEAL at ${cheapestSeller.name}</span>
+        </div>
+        <div class="insights" style="margin-bottom:1.25rem">${insightsHtml}</div>
+        <h4 style="font-size:.8rem;font-weight:700;letter-spacing:.5px;color:var(--text3);text-transform:uppercase;margin-bottom:.75rem">Compare Prices</h4>
+        <table class="seller-table">
+          <thead><tr><th>Store</th><th>Price</th><th>Delivery</th><th>Returns</th><th>Buy</th></tr></thead>
+          <tbody>${sellerRows}</tbody>
+        </table>
+        <div style="display:flex;gap:.75rem;flex-wrap:wrap">
+          <button onclick="toggleWish(event,${phone.id});updateDetailWishBtn(${phone.id})" id="detail-wish-btn"
+            style="flex:1;min-width:140px;background:${isWished?'rgba(255,92,53,.15)':'var(--card2)'};border:1px solid ${isWished?'var(--accent)':'var(--border)'};border-radius:10px;padding:.75rem;font-weight:600;font-size:.85rem;color:${isWished?'var(--accent)':'var(--text2)'};transition:all .2s">
+            ${isWished?'❤️ Wishlisted':'🤍 Add to Wishlist'}
+          </button>
+          <button onclick="openAlertModal(${phone.id})"
+            style="flex:1;min-width:140px;background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:.75rem;font-weight:600;font-size:.85rem;color:var(--text2)">
+            Price Alert
+          </button>
+          <button onclick="toggleCompare(${phone.id})" id="detail-cmp-btn"
+            style="flex:1;min-width:140px;background:${compareList.includes(phone.id)?'var(--purple)':'var(--card2)'};border:1px solid ${compareList.includes(phone.id)?'var(--purple)':'var(--border)'};border-radius:10px;padding:.75rem;font-weight:600;font-size:.85rem;color:${compareList.includes(phone.id)?'#fff':'var(--text2)'};transition:all .2s">
+            ${compareList.includes(phone.id)?'✓ In Compare':'⊕ Add to Compare'}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="page-tabs">
+      <button class="tab-btn active" onclick="switchTab(this,'specs-tab')">Full Specs</button>
+      <button class="tab-btn" onclick="switchTab(this,'reviews-tab')">Reviews (${phone.reviews.toLocaleString('en-IN')})</button>
+    </div>
+    <div class="tab-content active" id="specs-tab">
+      <div class="specs-section">${specRows}</div>
+    </div>
+    <div class="tab-content" id="reviews-tab">
+      ${reviews.map(r=>`<div class="review-card">
+        <div class="review-head">
+          <div class="reviewer-avatar">${r.avatar}</div>
+          <div><div class="reviewer-name">${r.name}</div><div class="review-date">${r.date}</div></div>
+          <div style="margin-left:auto" class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div>
+        </div>
+        <div class="review-text">${r.text}</div>
+      </div>`).join('')}
+    </div>`;
+  showPage('detail-page');
+}
+
+function switchTab(btn,tabId){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+function updateDetailWishBtn(id){
+  const btn = document.getElementById('detail-wish-btn');
+  if(!btn) return;
+  const isWished = wishlist.includes(id);
+  btn.style.background = isWished?'rgba(255,92,53,.15)':'var(--card2)';
+  btn.style.borderColor = isWished?'var(--accent)':'var(--border)';
+  btn.style.color = isWished?'var(--accent)':'var(--text2)';
+  btn.textContent = isWished?'❤️ Wishlisted':'🤍 Add to Wishlist';
+}
+
+// ===================== WISHLIST =====================
+function toggleWish(e,id){
+  e.stopPropagation();
+  const btn = document.getElementById('wish-'+id);
+  if(wishlist.includes(id)){wishlist=wishlist.filter(w=>w!==id);showToast('Removed from wishlist','🤍');if(btn)btn.classList.remove('active');}
+  else{wishlist.push(id);showToast('Added to wishlist! ❤️','❤️');if(btn)btn.classList.add('active');}
+  saveWishlist();
+}
+
+function renderWishlist(){
+  const grid = document.getElementById('wishlist-grid');
+  const empty = document.getElementById('wishlist-empty');
+  if(!wishlist.length){grid.innerHTML='';empty.style.display='block';}
+  else{empty.style.display='none';grid.innerHTML=PHONES.filter(p=>wishlist.includes(p.id)).map(p=>renderCard(p)).join('');}
+}
+
+// ===================== COMPARE =====================
+function toggleCompare(id){
+  if(compareList.includes(id)){compareList=compareList.filter(c=>c!==id);showToast('Removed from comparison','⊖');}
+  else{
+    if(compareList.length>=3){showToast('Max 3 phones can be compared','⚠️');return;}
+    compareList.push(id);showToast('Added to comparison!','⊕');
+  }
+  updateCompareBar();
+  const btn = document.getElementById('cmpbtn-'+id);
+  if(btn){btn.textContent=compareList.includes(id)?'✓ Added':'⊕ Compare';btn.classList.toggle('selected',compareList.includes(id));}
+}
+
+function updateCompareBar(){
+  const bar = document.getElementById('compare-bar');
+  const slots = document.getElementById('compare-slots');
+  if(!compareList.length){bar.classList.remove('visible');return;}
+  bar.classList.add('visible');
+  slots.innerHTML = compareList.map(id=>{const p=PHONES.find(x=>x.id===id);return`<div class="compare-slot filled">${p?p.name:'Phone'}</div>`;}).join('')
+    + Array(3-compareList.length).fill('<div class="compare-slot">+ Add phone</div>').join('');
+}
+
+function clearCompare(){compareList=[];updateCompareBar();document.querySelectorAll('.btn-compare').forEach(b=>{b.classList.remove('selected');b.textContent='⊕ Compare';});showToast('Comparison cleared','🗑️');}
+function goCompare(){showPage('compare-page');}
+
+function renderComparePage(){
+  const el = document.getElementById('compare-full-content');
+  if(!compareList.length){
+    el.innerHTML=`<div style="text-align:center;padding:4rem;color:var(--text2)">
+      <div style="margin-bottom:1rem"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="3" width="4" height="18"/><rect x="10" y="8" width="4" height="13"/><rect x="2" y="13" width="4" height="8"/></svg></div>
+      <p>No phones selected for comparison.</p>
+      <button onclick="showPage('listing')" style="margin-top:1rem;background:var(--accent);color:#fff;border-radius:10px;padding:.75rem 1.5rem;font-weight:700;font-size:.9rem">Browse Phones</button>
+    </div>`;
+    return;
+  }
+  const phones = compareList.map(id=>PHONES.find(p=>p.id===id)).filter(Boolean);
+  const specKeys = ['display','ram','storage','battery','camera','processor','os','fiveG'];
+  const specLabels = {display:'Display',ram:'RAM',storage:'Storage',battery:'Battery',camera:'Camera',processor:'Processor',os:'OS',fiveG:'5G'};
+  el.innerHTML = `
+    <div class="compare-table-wrap">
+      <table class="compare-table">
+        <thead><tr>
+          <th class="label-col">Feature</th>
+          ${phones.map(p=>`<th>
+            <img src="${p.img}" style="height:80px;object-fit:contain;margin-bottom:.5rem"
+              onerror="this.style.display='none'"><br>
+            <div style="font-size:.75rem;color:var(--text3)">${p.brand}</div>
+            <div style="font-weight:700;font-size:.9rem">${p.name}</div>
+          </th>`).join('')}
+        </tr></thead>
+        <tbody>
+          <tr><td class="label-col">Best Price</td>${phones.map(p=>{const lp=minPrice(p);const isLowest=lp===Math.min(...phones.map(minPrice));return`<td class="${isLowest?'winner-cell':''}">${fmt(lp)}${isLowest?'<br><span style="font-size:.65rem;background:rgba(34,197,94,.15);color:var(--green);padding:.1rem .4rem;border-radius:4px;font-weight:700">LOWEST</span>':''}</td>`;}).join('')}</tr>
+          <tr><td class="label-col">Rating</td>${phones.map(p=>{const isTop=p.rating===Math.max(...phones.map(x=>x.rating));return`<td class="${isTop?'winner-cell':''}">${p.rating}★${isTop?'<br><span style="font-size:.65rem">TOP</span>':''}</td>`;}).join('')}</tr>
+          ${specKeys.map(k=>`<tr><td class="label-col">${specLabels[k]}</td>${phones.map(p=>`<td>${p.specs[k]===true?'Yes':p.specs[k]===false?'No':p.specs[k]}</td>`).join('')}</tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:2rem;display:flex;gap:.75rem;flex-wrap:wrap">
+      ${phones.map(p=>`<button onclick="showDetail(${p.id})" class="btn-view" style="flex:1;padding:.75rem;border-radius:10px">View ${p.name} →</button>`).join('')}
+    </div>`;
+}
+
+// ===================== PRICE ALERT =====================
+function openAlertModal(id){
+  const phone = PHONES.find(p=>p.id===id);
+  if(!phone) return;
+  document.getElementById('alert-phone-name').textContent = `${phone.brand} ${phone.name}`;
+  document.getElementById('alert-current-price').textContent = fmt(minPrice(phone));
+  document.getElementById('alert-target').value = Math.round(minPrice(phone)*.9);
+  document.getElementById('alert-modal').classList.add('open');
+}
+function closeModal(){document.getElementById('alert-modal').classList.remove('open');}
+function setAlert(){
+  const email=document.getElementById('alert-email').value;
+  const target=document.getElementById('alert-target').value;
+  if(!email||!target){showToast('Please fill all fields','⚠️');return;}
+  closeModal();
+  showToast(`Alert set! We'll email when price drops to ${fmt(+target)}`, '✓');
+}
+
+// ===================== THEME =====================
+function toggleTheme(){
+  const html=document.documentElement;
+  const isDark=!html.dataset.theme||html.dataset.theme==='dark';
+  html.dataset.theme=isDark?'light':'dark';
+  document.getElementById('theme-icon').textContent=isDark?'☀️':'🌙';
+}
+
+// ===================== CHATBOT =====================
+let chatOpen=false;
+function toggleChat(){chatOpen=!chatOpen;document.getElementById('chat-window').classList.toggle('open',chatOpen);}
+
+const CHAT_RESPONSES = {
+  '₹20k':`Top phones under ₹20,000:\n\n🏆 **Realme Narzo 70 Pro** – ₹17,999 – 5G, AMOLED display\n🥈 **Moto G85 5G** – ₹17,999 – Clean Android, pOLED\n🥉 **Infinix Zero 40 5G** – ₹19,999 – 108MP camera\n\nAll available with lowest prices on MobiCompare!`,
+  '₹30k':`Best 5G phones under ₹30,000:\n\n🏆 **POCO X7 Pro** – ₹27,999 – 6550mAh battery, gaming chip\n🥈 **Nothing Phone 2a Plus** – ₹23,999 – Unique Glyph design\n🥉 **OnePlus Nord 4** – ₹29,999 – Metal body, fast charge`,
+  'camera':`Best camera phones right now:\n\n📸 **iPhone 16 Pro** – ProRAW + computational photography\n📸 **Vivo X200 Pro** – 200MP + Zeiss optics\n📸 **Samsung S25 Ultra** – 200MP, 10x optical zoom\n📸 **Google Pixel 9 Pro** – Best AI processing`,
+  'compare':`Samsung S25 Ultra vs iPhone 16 Pro:\n\n💰 S25 Ultra ₹1,33,999 | iPhone 16 Pro ₹1,19,900\n📷 S25 Ultra 200MP | iPhone 16 Pro 48MP\n🔋 S25 Ultra 5000mAh | iPhone 16 Pro 3274mAh\n⚡ Both Snapdragon 8 Elite / A18 Pro\n\nS25 Ultra = better specs & camera\niPhone 16 Pro = better ecosystem & performance`,
+  'default':`I can help you find the perfect phone! Try:\n• "Best phone under ₹25,000"\n• "Best camera phone 2025"\n• "5G phones under ₹35k"\n• "Compare S25 vs iPhone 16"\n\nOr browse ${PHONES.length} phones from ${[...new Set(PHONES.map(p=>p.brand))].length} brands!`
+};
+
+function getChatResponse(msg){
+  const m=msg.toLowerCase();
+  if(m.includes('20')||m.includes('20k')) return CHAT_RESPONSES['₹20k'];
+  if(m.includes('30')||m.includes('5g')) return CHAT_RESPONSES['₹30k'];
+  if(m.includes('camera')||m.includes('photo')) return CHAT_RESPONSES['camera'];
+  if(m.includes('compare')||m.includes('s25')||m.includes('iphone')) return CHAT_RESPONSES['compare'];
+  return CHAT_RESPONSES['default'];
+}
+
+function addMsg(text,isUser){
+  const msgs=document.getElementById('chat-msgs');
+  const div=document.createElement('div');
+  div.className=`msg msg-${isUser?'user':'bot'}`;
+  div.innerHTML=text.replace(/\n/g,'<br>').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>');
+  msgs.appendChild(div);msgs.scrollTop=msgs.scrollHeight;
+}
+function sendChat(){
+  const input=document.getElementById('chat-input');
+  const msg=input.value.trim();if(!msg)return;
+  input.value='';addMsg(msg,true);
+  document.getElementById('chat-sugs').style.display='none';
+  setTimeout(()=>{
+    addMsg('🤔 Thinking...',false);
+    setTimeout(()=>{const msgs=document.getElementById('chat-msgs');msgs.removeChild(msgs.lastChild);addMsg(getChatResponse(msg),false);},800);
+  },200);
+}
+function quickChat(el){document.getElementById('chat-input').value=el.textContent;sendChat();}
+
+// ===================== INIT =====================
+renderHome();
+updateCompareBar();
+document.getElementById('wish-count').textContent = wishlist.length;
+</script>
+</body>
+</html>
